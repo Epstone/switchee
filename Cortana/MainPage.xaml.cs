@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -28,7 +29,11 @@ namespace CortanaHomeAutomation
         public MainPage()
         {
             this.InitializeComponent();
+            this.lv_Devices.ItemsSource = new ObservableCollection<string>() {"Hello 12", "Hello13"};
         }
+
+        
+
 
         private string _gatewayIP = "192.168.0.156";
         private int _gatewayPort = 49880;
@@ -48,9 +53,11 @@ namespace CortanaHomeAutomation
             GatewayClient.Send(onCommand, _gatewayIP, _gatewayPort);
         }
 
+        private int i = 0;
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
-
+            lv_Devices.Items.Add("Hello world + i");
+            i++;
         }
     }
 }

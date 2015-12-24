@@ -26,50 +26,10 @@ namespace CortanaHomeAutomation
         /// <returns>Die Nachricht für das Connair</returns>
         public override string CreateCommand(bool deviceState)
         {
-            string resultOld = CreateCommandOriginal(deviceState);
-            string resultNew = CreateCommandWlanSwitch(deviceState);
-
-            return resultNew;
+            string result = CreateCommandOriginal(deviceState);
+            return result;
         }
 
-        private string CreateCommandWlanSwitch(bool deviceState)
-        {
-            int i = 0;
-            int j = 3;
-
-            bool flag1 = true;
-            String[] array = new String[2];
-            array[0] = "4,12,4,12,";
-            array[1] = "4,12,12,4,";
-            String s = encodeBits(array, (inverse4Bits(i) << 4) + inverse4Bits(j - 1), 8);
-            String s1;
-            if (deviceState)
-            {
-                i = ((flag1) ? 1 : 0);
-            }
-            else
-            {
-                i = 0;
-            }
-            s1 = array[i];
-            return ((new StringBuilder()).Append("TXP:0,0,5,11125,89,25,").Append(s).Append("4,12,4,12,4,12,12,4,4,12,12,4,").Append(s1).Append("4,63").Append(";").ToString());
-        }
-
-        protected static String encodeBits(String[] array, int i, int j)
-        {
-            String s = "";
-            for (int k = 0; k < j; k++)
-            {
-                s = (new StringBuilder()).Append(s).Append(array[i >> j - 1 - k & 1]).ToString();
-            }
-
-            return s;
-        }
-
-        protected static int inverse4Bits(int i)
-        {
-            return (i & 1) << 3 | (i & 2) << 1 | (i & 4) >> 1 | i >> 3 & 1;
-        }
 
         private string CreateCommandOriginal(bool deviceState)
         {
