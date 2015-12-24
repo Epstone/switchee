@@ -1,0 +1,2 @@
+MainPackage=C:\Projects\CortanaHomeAutomation\Cortana\bin\ARM\Release\CortanaHomeAutomation.Core_1.0.0.0_ARM.appx
+SymbolPackage=C:\Projects\CortanaHomeAutomation\Cortana\AppPackages\CortanaHomeAutomation.Core_1.0.0.0_Test\CortanaHomeAutomation.Core_1.0.0.0_ARM.appxsym

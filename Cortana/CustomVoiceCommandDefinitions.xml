@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="DE-de" Name="CustomCommands">
+    <CommandPrefix>Bitte</CommandPrefix>
+    <Example>Sag mir wer ist die beste Frau auf der Welt?</Example>
+    <Command Name="Girlfriend">
+      <Example>Wer ist die beste Frau auf der Welt?</Example>
+      <ListenFor>Wer ist die beste Frau auf der Welt?</ListenFor>
+      <ListenFor>Wer ist die schönste Frau [auf] [der] [Welt]?</ListenFor>
+      <Feedback>Das ist Raphaela Schwarz und sie backt vorzügliche Plätzchen! Du solltest sie mal wieder zum Essen ausführen.</Feedback>
+      <Navigate/>
+    </Command>
+    
+    <Command Name="Rolladen">
+      <Example>Schließe/Öffne alle Rolladen im Wohnzimmer</Example>
+      <ListenFor>{RolladenAktion} [alle] Rolladen [im] {Zimmer}</ListenFor>
+      <ListenFor>{RolladenAktion} [alle] Rolläden [im] {Zimmer}</ListenFor>
+      <Feedback>Ok, mach ich.</Feedback>
+      <Navigate/>
+    </Command>
+
+    <PhraseList Label="Zimmer">
+      <Item>Wohnzimmer</Item>
+      <Item>Schlafzimmer</Item>
+      <Item>Arbeitszimmer</Item>
+      <Item>Bad</Item>
+      <Item>Badezimmer</Item>
+    </PhraseList>
+
+    <PhraseList Label="RolladenAktion">
+      <Item>Schließen</Item>
+      <Item>Öffnen</Item>
+    </PhraseList>
+
+
+  </CommandSet>
+
+</VoiceCommands>
+

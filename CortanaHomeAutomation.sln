@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CortanaHomeAutomation.Core", "Cortana\CortanaHomeAutomation.Core.csproj", "{B4A04AE8-03E3-4851-8193-8027F520EFD1}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CortanaHomeAutomation.GatewayLib", "GatewayLib\CortanaHomeAutomation.GatewayLib.shproj", "{63A083ED-C9AE-4903-B329-DEF47F8925C8}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CortanaHomeAutomation.Dto", "Dto\CortanaHomeAutomation.Dto.shproj", "{ED4B2C8D-1A1E-4099-AAEE-F73EA3911203}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Dto\Dto.projitems*{ed4b2c8d-1a1e-4099-aaee-f73ea3911203}*SharedItemsImports = 13
+		Dto\Dto.projitems*{b4a04ae8-03e3-4851-8193-8027f520efd1}*SharedItemsImports = 4
+		GatewayLib\GatewayLib.projitems*{b4a04ae8-03e3-4851-8193-8027f520efd1}*SharedItemsImports = 4
+		GatewayLib\GatewayLib.projitems*{63a083ed-c9ae-4903-b329-def47f8925c8}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Debug|ARM.ActiveCfg = Debug|ARM
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Debug|ARM.Build.0 = Debug|ARM
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Debug|ARM.Deploy.0 = Debug|ARM
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Debug|x64.ActiveCfg = Debug|x64
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Debug|x64.Build.0 = Debug|x64
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Debug|x64.Deploy.0 = Debug|x64
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Debug|x86.ActiveCfg = Debug|x86
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Debug|x86.Build.0 = Debug|x86
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Debug|x86.Deploy.0 = Debug|x86
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|Any CPU.ActiveCfg = Release|x86
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|ARM.ActiveCfg = Release|ARM
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|ARM.Build.0 = Release|ARM
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|ARM.Deploy.0 = Release|ARM
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|x64.ActiveCfg = Release|x64
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|x64.Build.0 = Release|x64
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|x64.Deploy.0 = Release|x64
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|x86.ActiveCfg = Release|x86
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|x86.Build.0 = Release|x86
+		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
