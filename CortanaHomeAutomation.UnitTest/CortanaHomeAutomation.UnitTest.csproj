@@ -126,7 +126,12 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <Import Project="..\Dto\Dto.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\Cortana\CortanaHomeAutomation.Core.csproj">
+      <Project>{B4A04AE8-03E3-4851-8193-8027F520EFD1}</Project>
+      <Name>CortanaHomeAutomation.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

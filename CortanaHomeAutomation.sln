@@ -13,7 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CortanaHomeAutomation.UnitT
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Dto\Dto.projitems*{d00e0006-f18e-4464-9566-b5fb32f24cf2}*SharedItemsImports = 4
 		Dto\Dto.projitems*{ed4b2c8d-1a1e-4099-aaee-f73ea3911203}*SharedItemsImports = 13
 		Dto\Dto.projitems*{b4a04ae8-03e3-4851-8193-8027f520efd1}*SharedItemsImports = 4
 		GatewayLib\GatewayLib.projitems*{b4a04ae8-03e3-4851-8193-8027f520efd1}*SharedItemsImports = 4

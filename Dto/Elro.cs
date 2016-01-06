@@ -34,7 +34,7 @@ namespace CortanaHomeAutomation
             int bitHgh = 3;
             String seqLow = bitLow + "," + bitHgh + "," + bitLow + "," + bitHgh + ",";
             String seqHgh = bitLow + "," + bitHgh + "," + bitHgh + "," + bitLow + ",";
-            String bits = this._masterdip;
+            String bits = this.Masterdip;
             String msg = "";
 
             for (int i = 0; i < bits.ToString().Length; i++)
@@ -50,7 +50,7 @@ namespace CortanaHomeAutomation
             }
 
             String msgM = msg;
-            bits = this._slavedip;
+            bits = this.Slavedip;
             msg = "";
             for (int i = 0; i < bits.ToString().Length; i++)
             {

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
+using System.Xml.Serialization;
 using Windows.UI.Xaml.Media;
 
 namespace CortanaHomeAutomation
@@ -7,9 +9,15 @@ namespace CortanaHomeAutomation
     /// <summary>
     /// Die Schalter 1 bis 5 sind der masterdip und die Schalter A bis E sind der slavedip.
     /// </summary>
+    [XmlInclude(typeof(Intertechno))]
     public class Intertechno : Device
     {
-        public string Title => this._masterdip + " " + this._slavedip;
+        public Intertechno(): base()
+        {
+            
+        }
+
+        public string Title => this.Masterdip + " " + this.Slavedip;
 
 
         /// <summary>
@@ -54,7 +62,7 @@ namespace CortanaHomeAutomation
             string seqLow = bitHgh + "," + bitHgh + "," + bitLow + "," + bitLow + ",";
             string seqHgh = bitHgh + "," + bitLow + "," + bitHgh + "," + bitLow + ",";
             string msgM = "";
-            switch (this._masterdip.ToUpperInvariant())
+            switch (this.Masterdip.ToUpperInvariant())
             {
                 case "A":
                     msgM = seqHgh + seqHgh + seqHgh + seqHgh;
@@ -106,7 +114,7 @@ namespace CortanaHomeAutomation
                     break;
             }
             string msgS = "";
-            switch (this._slavedip)
+            switch (this.Slavedip)
             {
                 case "1":
                     msgS = seqHgh + seqHgh + seqHgh + seqHgh;

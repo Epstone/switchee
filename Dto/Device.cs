@@ -4,23 +4,30 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Xml.Serialization;
 
 namespace CortanaHomeAutomation
 {
     /// <summary>
     /// Basisklasse für alle Geräte
     /// </summary>
+    [XmlInclude(typeof(Device))]
     public abstract class Device
     {
         /// <summary>
         /// Der Masterdip
         /// </summary>
-        protected string _masterdip;
+        public string Masterdip { get; set; }
 
         /// <summary>
         /// Der Slavedip
         /// </summary>
-        protected string _slavedip;
+        public string Slavedip { get; set; }
+
+        public Device()
+        {
+            
+        }
 
         /// <summary>
         /// Konstruktor
@@ -29,8 +36,8 @@ namespace CortanaHomeAutomation
         /// <param name="slavedip">Der Slavedip</param>
         public Device(String masterdip, String slavedip)
         {
-            this._masterdip = masterdip;
-            this._slavedip = slavedip;
+            this.Masterdip = masterdip;
+            this.Slavedip = slavedip;
         }
 
         /// <summary>
