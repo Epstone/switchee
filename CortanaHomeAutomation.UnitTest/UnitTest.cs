@@ -13,6 +13,7 @@ namespace CortanaHomeAutomation.UnitTest
             ObservableCollection<Device> devices = new ObservableCollection<Device>();
             devices.Add(new Intertechno("A","3"));
             devices.Add(new Intertechno("A", "4"));
+            devices.Add(new Intertechno("A", "5"));
 
 
         }
