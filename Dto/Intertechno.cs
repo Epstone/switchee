@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Windows.UI.Xaml.Media;
 
 namespace CortanaHomeAutomation
 {
@@ -8,6 +9,9 @@ namespace CortanaHomeAutomation
     /// </summary>
     public class Intertechno : Device
     {
+        public string Title => this._masterdip + " " + this._slavedip;
+
+
         /// <summary>
         /// Die Schalter 1 bis 5 sind der masterdip und die Schalter A bis E sind der slavedip.
         /// </summary>

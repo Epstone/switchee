@@ -8,11 +8,61 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="button" Content="On" HorizontalAlignment="Left" Margin="37,259,0,0" VerticalAlignment="Top" Click="button_Click"/>
-        <Button x:Name="btn_off" Content="Off" HorizontalAlignment="Left" Margin="108,259,0,0" VerticalAlignment="Top" Click="btn_off_Click"/>
-        <ListView x:Name="lv_Devices" HorizontalAlignment="Left" Height="209" Margin="10,10,0,0" VerticalAlignment="Top" Width="340">
+        <FlyoutBase.AttachedFlyout>
+            <MenuFlyout/>
+        </FlyoutBase.AttachedFlyout>
+        <ListView x:Name="lv_Devices" HorizontalAlignment="Left" Height="Auto" Margin="10,10,0,0" VerticalAlignment="Top" Width="Auto">
+            <ListView.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Width="100" Margin="0,4,14,0">
+                        <TextBlock Text="Devices" Margin="0,0,18,20" 
+                        Style="{StaticResource TitleTextBlockStyle}" MaxHeight="60"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Width="Auto">
+                        <Button Content="Add" Click="btn_add_Click"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Width="Auto" Margin="10,0,0,0">
+                        <Button Content="Add" Click="btn_save_OnClick"/>
+                    </StackPanel>
+                </Grid>
+            </ListView.Header>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="110" Margin="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+                        <!--<Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="110" Height="110">-->
+                            <Border Width="110" Height="110">
+                            <!--<Image Source="Assets/Square150x150Logo.png" Stretch="UniformToFill"/>-->
+                        </Border>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="0,0,0,0">
+                            <Image Source="Assets/Square150x150Logo.png" Stretch="Uniform" Height="110" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
+                            <TextBlock Text="{Binding Title}" TextWrapping="NoWrap"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="10,0,0,0">
+                            <Button x:Name="btn_up" Content="up" HorizontalAlignment="Center" Click="btn_up_OnClick"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" VerticalAlignment="Center" Margin="10,0,0,0">
+                            <Button x:Name="btn_down" Content="down" HorizontalAlignment="Center" Click="Btn_down_OnClick"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="btn_add" Content="Add" HorizontalAlignment="Left" Margin="195,259,0,0" VerticalAlignment="Top" Click="btn_add_Click"/>
+        
 
     </Grid>
 </Page>

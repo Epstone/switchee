@@ -9,8 +9,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CortanaHomeAutomation.Gatew
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CortanaHomeAutomation.Dto", "Dto\CortanaHomeAutomation.Dto.shproj", "{ED4B2C8D-1A1E-4099-AAEE-F73EA3911203}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CortanaHomeAutomation.UnitTest", "CortanaHomeAutomation.UnitTest\CortanaHomeAutomation.UnitTest.csproj", "{D00E0006-F18E-4464-9566-B5FB32F24CF2}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Dto\Dto.projitems*{d00e0006-f18e-4464-9566-b5fb32f24cf2}*SharedItemsImports = 4
 		Dto\Dto.projitems*{ed4b2c8d-1a1e-4099-aaee-f73ea3911203}*SharedItemsImports = 13
 		Dto\Dto.projitems*{b4a04ae8-03e3-4851-8193-8027f520efd1}*SharedItemsImports = 4
 		GatewayLib\GatewayLib.projitems*{b4a04ae8-03e3-4851-8193-8027f520efd1}*SharedItemsImports = 4
@@ -47,6 +50,26 @@ Global
 		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|x86.ActiveCfg = Release|x86
 		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|x86.Build.0 = Release|x86
 		{B4A04AE8-03E3-4851-8193-8027F520EFD1}.Release|x86.Deploy.0 = Release|x86
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Debug|ARM.ActiveCfg = Debug|ARM
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Debug|ARM.Build.0 = Debug|ARM
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Debug|ARM.Deploy.0 = Debug|ARM
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Debug|x64.ActiveCfg = Debug|x64
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Debug|x64.Build.0 = Debug|x64
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Debug|x64.Deploy.0 = Debug|x64
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Debug|x86.ActiveCfg = Debug|x86
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Debug|x86.Build.0 = Debug|x86
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Debug|x86.Deploy.0 = Debug|x86
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Release|Any CPU.ActiveCfg = Release|x86
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Release|ARM.ActiveCfg = Release|ARM
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Release|ARM.Build.0 = Release|ARM
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Release|ARM.Deploy.0 = Release|ARM
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Release|x64.ActiveCfg = Release|x64
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Release|x64.Build.0 = Release|x64
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Release|x64.Deploy.0 = Release|x64
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Release|x86.ActiveCfg = Release|x86
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Release|x86.Build.0 = Release|x86
+		{D00E0006-F18E-4464-9566-B5FB32F24CF2}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
