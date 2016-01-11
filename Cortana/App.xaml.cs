@@ -1,27 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Diagnostics;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.ApplicationModel.VoiceCommands;
+using Windows.Media.SpeechRecognition;
+using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.Media.SpeechRecognition;
-using Windows.ApplicationModel.VoiceCommands;
-using Windows.Storage;
-using System.Diagnostics;
-using Windows.UI.Popups;
-using System.Threading.Tasks;
 
-namespace CortanaHomeAutomation
+namespace CortanaHomeAutomation.MainApp
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -40,6 +29,9 @@ namespace CortanaHomeAutomation
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+
+
+        private AppState appState = null;
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -69,7 +61,7 @@ namespace CortanaHomeAutomation
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    //TODO: Load state from previously suspended application
+                    appState = await Startup.LoadAppState();
                 }
 
                 // Place the frame in the current Window
@@ -81,7 +73,14 @@ namespace CortanaHomeAutomation
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+
+                if (appState == null)
+                {
+                    appState = await Startup.LoadAppState();
+                }
+
+                //rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                rootFrame.Navigate(typeof(MainPage), appState);
             }
             // Ensure the current window is active
             Window.Current.Activate();

@@ -2,43 +2,39 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using System.Threading;
-using System.Threading.Tasks;
-using GatewayLib;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace CortanaHomeAutomation
+namespace CortanaHomeAutomation.MainApp
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private ObservableCollection<Device> _devices;
+        private AppState _state;
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this._state = (AppState)e.Parameter;
+
+            this.lv_Devices.ItemsSource = _state.Devices;
+
+            base.OnNavigatedTo(e);
+        }
 
         public MainPage()
         {
             this.InitializeComponent();
-            this._devices = CreateDevices();
-            this.lv_Devices.ItemsSource = _devices;
         }
 
         private static ObservableCollection<Device> CreateDevices()
         {
-            var devices = new ObservableCollection<CortanaHomeAutomation.Device>();
+            var devices = new ObservableCollection<Device>();
             for (int j = 1; j <= 16; j++)
             {
                 var device = new Intertechno("A", j.ToString());
@@ -50,6 +46,7 @@ namespace CortanaHomeAutomation
 
         private string _gatewayIP = "192.168.0.156";
         private int _gatewayPort = 49880;
+
         private void button_Click(object sender, RoutedEventArgs e)
         {
             Intertechno device = new Intertechno("A", "3");
@@ -63,10 +60,24 @@ namespace CortanaHomeAutomation
             GatewayClient.Send(onCommand, _gatewayIP, _gatewayPort);
         }
 
-        private void btn_add_Click(object sender, RoutedEventArgs e)
+        private async void btn_add_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            dlgAddDevice dialog = new dlgAddDevice();
+            ContentDialogResult dialogResult = await dialog.ShowAsync();
+
+            if (dialogResult == ContentDialogResult.Primary)
+            {
+                this._state.Devices.Add(dialog.ViewModel.Device);
+                await Startup.StoreAppState(_state);
+            }
+            else
+            {
+                // User pressed Cancel or the back arrow.
+                // Terms of use were not accepted.
+            }
+
         }
+
 
         private async void btn_save_OnClick(object sender, RoutedEventArgs e)
         {
@@ -89,7 +100,8 @@ namespace CortanaHomeAutomation
                 // Let Windows know that we're finished changing the file so
                 // the other app can update the remote version of the file.
                 // Completing updates may require Windows to ask for user input.
-                Windows.Storage.Provider.FileUpdateStatus status = await Windows.Storage.CachedFileManager.CompleteUpdatesAsync(file);
+                Windows.Storage.Provider.FileUpdateStatus status =
+                    await Windows.Storage.CachedFileManager.CompleteUpdatesAsync(file);
                 if (status == Windows.Storage.Provider.FileUpdateStatus.Complete)
                 {
                     Debug.WriteLine("File " + file.Name + " was saved.");
@@ -106,7 +118,17 @@ namespace CortanaHomeAutomation
 
         }
 
-        private void btn_up_OnClick(object sender, RoutedEventArgs e)
+        private void btn_off_OnClick(object sender, RoutedEventArgs e)
+        {
+            var btn = e.OriginalSource as Button;
+            if (btn != null)
+            {
+                var device = btn.DataContext as Device;
+                ExecuteCommand(device, false);
+            }
+        }
+
+        private void btn_on_OnClick(object sender, RoutedEventArgs e)
         {
             var btn = e.OriginalSource as Button;
             if (btn != null)
@@ -115,15 +137,33 @@ namespace CortanaHomeAutomation
                 ExecuteCommand(device, true);
             }
         }
+    }
 
-        private void Btn_down_OnClick(object sender, RoutedEventArgs e)
+    public class SampleDeviceData : ObservableCollection<Device>
+    {
+        public SampleDeviceData()
         {
-            var btn = e.OriginalSource as Button;
-            if (btn != null)
+            this.Add(new Intertechno()
             {
-                var device = btn.DataContext as Device;
-                ExecuteCommand(device, false);
-            }
+                UserDefinedName = "Schlafzimmer Fenster",
+                Masterdip = "A",
+                Slavedip = "5"
+            });
+
+            this.Add(new Intertechno()
+            {
+                UserDefinedName = "Wohnzimmerbeleuchtung",
+                Masterdip = "A",
+                Slavedip = "7"
+            });
+
+            this.Add(new Intertechno()
+            {
+                UserDefinedName = "Rollo Küche",
+                Masterdip = "A",
+                Slavedip = "12"
+            });
+
         }
     }
 }

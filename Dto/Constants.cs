@@ -1,4 +1,4 @@
-﻿namespace CortanaHomeAutomation
+﻿namespace CortanaHomeAutomation.MainApp
 {
     class Constants
     {

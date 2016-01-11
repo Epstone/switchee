@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
 using System.Xml.Serialization;
-using Windows.UI.Xaml.Media;
 
-namespace CortanaHomeAutomation
+namespace CortanaHomeAutomation.MainApp
 {
     /// <summary>
     /// Die Schalter 1 bis 5 sind der masterdip und die Schalter A bis E sind der slavedip.

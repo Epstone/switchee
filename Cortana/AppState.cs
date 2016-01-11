@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Xml.Serialization;
 
-namespace CortanaHomeAutomation
+namespace CortanaHomeAutomation.MainApp
 {
     [XmlInclude(typeof(Device))]
     [XmlInclude(typeof(Intertechno))]
@@ -14,7 +9,7 @@ namespace CortanaHomeAutomation
     {
         public AppState()
         {
-            
+            this.Devices = new ObservableCollection<Device>();
         }
         public ObservableCollection<Device> Devices { get; set; }
     }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
+using CortanaHomeAutomation.MainApp;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace CortanaHomeAutomation.UnitTest
@@ -13,7 +14,7 @@ namespace CortanaHomeAutomation.UnitTest
     public class UnitTest1
     {
         [TestMethod]
-        public async Task Save_And_Load_AsXml()
+        public async Task Save_And_Load_AppState_As_Xml()
         {
             AppState state = new AppState();
 
@@ -26,15 +27,20 @@ namespace CortanaHomeAutomation.UnitTest
 
             await XMLStorage.SaveObjectToXml(state, filename);
 
-
-            var result = await XMLStorage.ReadObjectFromXmlFileAsync<AppState>(filename);
-
             var file = await ApplicationData.Current.LocalFolder.GetFileAsync(filename);
-            var text = await Windows.Storage.FileIO.ReadTextAsync(file);
+            var result = await XMLStorage.ReadObjectFromXmlFileAsync<AppState>(file);
 
             Assert.AreEqual(3, result.Devices.Count);
             Assert.AreEqual("A", result.Devices.FirstOrDefault().Masterdip);
             Assert.AreEqual("3", result.Devices.FirstOrDefault().Slavedip);
         }
+
+        [TestMethod]
+        public async Task When_App_Starts_Try_To_Load_State_From_Future_AccessList()
+        {
+            var appState= Startup.LoadAppState();
+            Assert.IsNotNull(appState);
+        }
+        
     }
 }

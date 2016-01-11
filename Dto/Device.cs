@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading;
 using System.Xml.Serialization;
 
-namespace CortanaHomeAutomation
+namespace CortanaHomeAutomation.MainApp
 {
     /// <summary>
     /// Basisklasse für alle Geräte
@@ -23,6 +18,8 @@ namespace CortanaHomeAutomation
         /// Der Slavedip
         /// </summary>
         public string Slavedip { get; set; }
+
+        public string UserDefinedName { get; set; }
 
         public Device()
         {

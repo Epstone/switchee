@@ -1,4 +1,4 @@
-﻿namespace CortanaHomeAutomation
+﻿namespace CortanaHomeAutomation.MainApp
 {
     public class DeviceStorage
     {
