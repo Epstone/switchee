@@ -55,20 +55,22 @@
                             <Image Source="Assets/Square150x150Logo.png" Stretch="Uniform" Height="110" />
                         </StackPanel>-->
                         <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,0,0">
-                            <TextBlock Text="{Binding Title}" TextWrapping="NoWrap" FontSize="20"/>
+                            <Border CornerRadius="50" Width="60" Height="60" Margin="10" Padding="0,0,0,0" Background="white"  BorderBrush="Black" BorderThickness="2">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Text="{Binding Title}"></TextBlock>
+                            </Border>
                         </StackPanel>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
-                            <TextBlock Text="{Binding UserDefinedName}" TextWrapping="NoWrap"/>
+                            <Button x:Name="btn_down" Content="An" HorizontalAlignment="Center" Click="btn_on_OnClick"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="10,0,0,0">
                             <Button x:Name="btn_up" Content="Aus" HorizontalAlignment="Center" Click="btn_off_OnClick"/>
                         </StackPanel>
                         <StackPanel Grid.Column="3" VerticalAlignment="Center" Margin="10,0,0,0">
-                            <Button x:Name="btn_down" Content="An" HorizontalAlignment="Center" Click="btn_on_OnClick"/>
+                            <TextBlock Text="{Binding UserDefinedName}" TextWrapping="NoWrap"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
-                
+
             </ListView.ItemTemplate>
         </ListView>
 
