@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.Foundation;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -18,6 +21,9 @@ namespace CortanaHomeAutomation.MainApp
     {
         private AppState _state;
 
+        public bool ShowDeletionButtons { get; set; }
+
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this._state = (AppState)e.Parameter;
@@ -30,6 +36,9 @@ namespace CortanaHomeAutomation.MainApp
         public MainPage()
         {
             this.InitializeComponent();
+
+            ApplicationView.PreferredLaunchViewSize = new Size { Height = 550, Width = 500 };
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 
         private static ObservableCollection<Device> CreateDevices()
@@ -135,6 +144,16 @@ namespace CortanaHomeAutomation.MainApp
             {
                 var device = btn.DataContext as Device;
                 ExecuteCommand(device, true);
+            }
+        }
+
+        private void Btn_deleteDevice_OnClick(object sender, RoutedEventArgs e)
+        {
+            var btn = e.OriginalSource as Button;
+            if (btn != null)
+            {
+                var device = btn.DataContext as Device;
+                this._state.Devices.Remove(device);
             }
         }
     }

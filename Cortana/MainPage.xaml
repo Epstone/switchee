@@ -6,17 +6,22 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mainApp="using:CortanaHomeAutomation.MainApp"
+    xmlns:utility="using:CortanaHomeAutomation.MainApp.Utility"
     mc:Ignorable="d">
 
     <Page.Resources>
         <mainApp:SampleDeviceData  x:Key="data1"/>
+        <utility:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+        
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
         <FlyoutBase.AttachedFlyout>
             <MenuFlyout/>
         </FlyoutBase.AttachedFlyout>
-        <ListView x:Name="lv_Devices" HorizontalAlignment="Left" Height="Auto" Margin="10,10,0,0" VerticalAlignment="Top" Width="Auto" d:DataContext="{StaticResource data1}" ItemsSource="{Binding}">
+        <ListView x:Name="lv_Devices" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,0,0" VerticalAlignment="Top" Width="Auto" d:DataContext="{StaticResource data1}" ItemsSource="{Binding}">
             <ListView.Header>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -25,22 +30,22 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Width="100" Margin="0,4,14,0">
-                        <TextBlock Text="Devices" Margin="0,0,18,20" 
+                        <TextBlock Text="Geräte" Margin="0,0,18,20" 
                         Style="{StaticResource TitleTextBlockStyle}" MaxHeight="60"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" Width="Auto">
-                        <Button Content="Add" Click="btn_add_Click" HorizontalAlignment="Right" Margin="0,0,-0.333,0"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="2" Width="Auto" Margin="10,0,0,0">
-                        <Button Content="save as" Click="btn_save_OnClick"/>
                     </StackPanel>
                 </Grid>
             </ListView.Header>
 
+            <!--<ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>-->
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="110" Margin="6">
+                    <Grid Height="Auto" Margin="0">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -48,24 +53,28 @@
 
                         </Grid.ColumnDefinitions>
                         <!--<Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="110" Height="110">-->
-                        <Border Width="110" Height="110">
+                        <Border Height="70">
                             <!--<Image Source="Assets/Square150x150Logo.png" Stretch="UniformToFill"/>-->
                         </Border>
                         <!--<StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="0,0,0,0">
                             <Image Source="Assets/Square150x150Logo.png" Stretch="Uniform" Height="110" />
                         </StackPanel>-->
                         <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,0,0">
-                            <Border CornerRadius="50" Width="60" Height="60" Margin="10" Padding="0,0,0,0" Background="white"  BorderBrush="Black" BorderThickness="2">
+                            <AppBarButton x:Name="btn_deleteDevice" Icon="Delete" Click="Btn_deleteDevice_OnClick"  Visibility="{Binding IsChecked, ElementName=btn_DeleteVisibilityToggle, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            </AppBarButton>
+                        </StackPanel>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,0,0">
+                            <Border CornerRadius="50" Width="60" Height="60" Padding="0,0,0,0" Background="white"  BorderBrush="Black" BorderThickness="2">
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Text="{Binding Title}"></TextBlock>
                             </Border>
                         </StackPanel>
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
+                        <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="10,0,0,0">
                             <Button x:Name="btn_down" Content="An" HorizontalAlignment="Center" Click="btn_on_OnClick"/>
                         </StackPanel>
-                        <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="10,0,0,0">
+                        <StackPanel Grid.Column="3" VerticalAlignment="Center" Margin="10,0,0,0">
                             <Button x:Name="btn_up" Content="Aus" HorizontalAlignment="Center" Click="btn_off_OnClick"/>
                         </StackPanel>
-                        <StackPanel Grid.Column="3" VerticalAlignment="Center" Margin="10,0,0,0">
+                        <StackPanel Grid.Column="4" VerticalAlignment="Center" Margin="10,0,0,0">
                             <TextBlock Text="{Binding UserDefinedName}" TextWrapping="NoWrap"/>
                         </StackPanel>
                     </Grid>
@@ -74,6 +83,13 @@
             </ListView.ItemTemplate>
         </ListView>
 
-
+        <CommandBar Background="Transparent" IsOpen="False" VerticalAlignment="Bottom">
+            <AppBarButton Icon="Add" Label="Add" Click="btn_add_Click"/>
+            <AppBarToggleButton Icon="Delete" Label="Delete" Name="btn_DeleteVisibilityToggle"/>
+            <AppBarButton Icon="Save" Label="Konfiguration speichern"/>
+        </CommandBar>
+        
+        
     </Grid>
+    
 </Page>
