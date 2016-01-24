@@ -82,9 +82,7 @@ namespace CortanaHomeAutomation.MainApp
             else
             {
                 // User pressed Cancel or the back arrow.
-                // Terms of use were not accepted.
             }
-
         }
 
 
@@ -139,21 +137,49 @@ namespace CortanaHomeAutomation.MainApp
 
         private void btn_on_OnClick(object sender, RoutedEventArgs e)
         {
-            var btn = e.OriginalSource as Button;
-            if (btn != null)
-            {
-                var device = btn.DataContext as Device;
-                ExecuteCommand(device, true);
-            }
+            var device = GetDeviceFromEvent(e);
+            ExecuteCommand(device, true);
         }
 
+
         private void Btn_deleteDevice_OnClick(object sender, RoutedEventArgs e)
+        {
+            var device = GetDeviceFromEvent(e);
+            this._state.Devices.Remove(device);
+        }
+
+        private Device GetDeviceFromEvent(RoutedEventArgs e)
         {
             var btn = e.OriginalSource as Button;
             if (btn != null)
             {
                 var device = btn.DataContext as Device;
-                this._state.Devices.Remove(device);
+                return device;
+            }
+            return null;
+        }
+
+      
+
+        private async void btn_editDevice_Click(object sender, RoutedEventArgs e)
+        {
+            dlgAddDevice dialog = new dlgAddDevice();
+            var deviceForEdit = GetDeviceFromEvent(e) as Intertechno;
+            dialog.ViewModel.Device = deviceForEdit;
+
+            ContentDialogResult dialogResult = await dialog.ShowAsync();
+
+            if (dialogResult == ContentDialogResult.Primary)
+            {
+                var index = this._state.Devices.IndexOf(deviceForEdit);
+                this._state.Devices.Remove(deviceForEdit);
+                this._state.Devices.Insert(index, deviceForEdit);
+
+                await Startup.StoreAppState(_state);
+            }
+            else
+            {
+                // User pressed Cancel or the back arrow.
             }
         }
     }
