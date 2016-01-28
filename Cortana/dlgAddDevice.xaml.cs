@@ -22,18 +22,27 @@ namespace CortanaHomeAutomation.MainApp
     public sealed partial class dlgAddDevice : ContentDialog
     {
         internal AddDialogViewModel ViewModel { get; set; }
+        public bool EditMode { get; internal set; }
 
-        public dlgAddDevice()
+        public dlgAddDevice(bool editMode)
         {
+            this.EditMode = editMode;
+
             this.InitializeComponent();
             this.ViewModel =  new AddDialogViewModel();
 
             this.cmbxMasterSwitch.ItemsSource = ViewModel.MasterSwitches;
             this.cmbxSlaveSwitch.ItemsSource = ViewModel.SlaveSwitches;
+
+            if (EditMode)
+            {
+                this.PrimaryButtonText = "Übernehmen";
+            }
+            else
+            {
+                this.SecondaryButtonText = "Abbrechen";
+            }
         }
-
-        
-
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {

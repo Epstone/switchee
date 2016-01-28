@@ -12,20 +12,27 @@
     <Page.Resources>
         <mainApp:SampleDeviceData  x:Key="data1"/>
         <utility:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <utility:SelectedIndexBooleanConverter x:Key="SelectedIndexBooleanConverter" />
     </Page.Resources>
 
-    
-        
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
-        <FlyoutBase.AttachedFlyout>
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <!--<FlyoutBase.AttachedFlyout>
             <MenuFlyout/>
-        </FlyoutBase.AttachedFlyout>
-        <ListView x:Name="lv_Devices" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,0,0" VerticalAlignment="Top" Width="Auto" d:DataContext="{StaticResource data1}" ItemsSource="{Binding}">
+        </FlyoutBase.AttachedFlyout>-->
+
+        <ListView Name="lv_Devices" HorizontalAlignment="Stretch"  Height="Auto" Margin="10,10,0,0" Width="Auto" d:DataContext="{StaticResource data1}" ItemsSource="{Binding}" Grid.Row="1" >
             <ListView.Header>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
@@ -60,10 +67,10 @@
                             <Image Source="Assets/Square150x150Logo.png" Stretch="Uniform" Height="110" />
                         </StackPanel>-->
                         <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,10,0,0" Width="Auto" >
-                            <AppBarButton x:Name="btn_editDevice" Icon="Edit" Click="btn_editDevice_Click" Visibility="{Binding IsChecked, ElementName=btn_EditVisibilityToggle, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            <AppBarButton x:Name="btn_deleteDevice" Icon="Delete" Click="Btn_deleteDevice_OnClick" Visibility="{Binding IsChecked, ElementName=btn_DeleteVisibilityToggle, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <!--<AppBarButton x:Name="btn_editDevice" Icon="Edit" Click="btn_editDevice_Click" Visibility="{Binding IsChecked, ElementName=btn_EditVisibilityToggle, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <AppBarButton x:Name="btn_deleteDevice" Icon="Delete" Click="Btn_deleteDevice_OnClick" Visibility="{Binding IsChecked, ElementName=btn_DeleteVisibilityToggle, Converter={StaticResource BooleanToVisibilityConverter}}" />-->
                         </StackPanel>
-                            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,0,0">
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,0,0">
                             <Border CornerRadius="50" Width="60" Height="60" Padding="0,0,0,0" Background="white"  BorderBrush="Black" BorderThickness="2">
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Text="{Binding Title}"></TextBlock>
                             </Border>
@@ -83,14 +90,18 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <CommandBar Background="Transparent" IsOpen="False" VerticalAlignment="Bottom">
-            <AppBarButton Icon="Add" Label="Add" Click="btn_add_Click"/>
-            <AppBarToggleButton Icon="Edit" Label="Edit" Name="btn_EditVisibilityToggle"/>
-            <AppBarToggleButton Icon="Delete" Label="Delete" Name="btn_DeleteVisibilityToggle"/>
-            <AppBarButton Icon="Save" Label="Konfiguration speichern"/>
+        <CommandBar Background="White" IsOpen="false" VerticalAlignment="Bottom"  Grid.Row="2" >
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Add" Label="Add" Click="btn_add_Click"/>
+                
+                <AppBarButton Icon="Edit" Label="Ändern" Click="btn_editDevice_Click" IsEnabled="{Binding SelectedIndex, ElementName=lv_Devices, Converter={StaticResource SelectedIndexBooleanConverter}}"/>
+                <AppBarButton Icon="Delete" Label="Entfernen" Click="btn_deleteDevice_OnClick" IsEnabled="{Binding SelectedIndex, ElementName=lv_Devices, Converter={StaticResource SelectedIndexBooleanConverter}}"/>
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Save" Label="Konfiguration speichern" Click="btn_saveConfig_Click" Name="btn_saveConfig"/>
+                <AppBarButton Icon="OpenFile" Label="Konfiguration laden" Click="btn_loadConfig_Click" Name="btn_loadConfig"/>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
-        
-        
     </Grid>
-    
+
 </Page>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,16 +15,18 @@ namespace CortanaHomeAutomation.MainApp
         private const string _settingsFilename = "HomeAutomationSettings.xml";
         private const string _userDefinedSettingsToken = "SettingsFileToken";
 
-        public static async Task<AppState> LoadAppState()
+        private static ApplicationDataContainer LocalSettings { get { return ApplicationData.Current.LocalSettings; } }
+
+        public static async Task<AppState> LoadAppStateInitial()
         {
-            var file = await TryLoadSettingsFile().ConfigureAwait(false);
-            
-            AppState resultState = null;
+            var file = await TryLoadConfigFile().ConfigureAwait(false);
+
+            AppState resultState = new AppState();
 
             // app state no yet stored
             if (file == null)
             {
-                await StoreNewAppState();
+                await StoreInitialAppState(resultState);
             }
             else
             {
@@ -33,27 +36,40 @@ namespace CortanaHomeAutomation.MainApp
                 }
                 catch (Exception ex)
                 {
-                    await StoreNewAppState();
+                    await StoreInitialAppState(resultState);
                 }
             }
 
             return resultState;
         }
 
-        private static async Task StoreNewAppState()
+        private static async Task StoreInitialAppState(AppState appState)
         {
-            AppState resultState;
-            resultState = new AppState();
-            await XMLStorage.SaveObjectToXml(resultState, _settingsFilename).ConfigureAwait(false);
+            await XMLStorage.SaveObjectToXmlByFileName(appState, _settingsFilename).ConfigureAwait(false);
         }
 
-        private static async Task<StorageFile> TryLoadSettingsFile()
+        private static async Task<StorageFile> TryLoadConfigFile()
         {
             StorageFile file = null;
-
-            if (StorageApplicationPermissions.FutureAccessList.ContainsItem(_userDefinedSettingsToken))
+            string token = string.Empty;
+            
+            if (LocalSettings.Values.ContainsKey(_userDefinedSettingsToken))
             {
-                file = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(_userDefinedSettingsToken);
+                token = LocalSettings.Values[_userDefinedSettingsToken] as string;
+            }
+
+            if (!string.IsNullOrEmpty(token) && StorageApplicationPermissions.FutureAccessList.ContainsItem(token))
+            {
+                try
+                {
+                    file = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(token);
+                }
+                catch (FileNotFoundException ex)
+                {
+                    // file no longer existing, remove entry
+                    StorageApplicationPermissions.FutureAccessList.Remove(token);
+                    LocalSettings.Values.Remove(_userDefinedSettingsToken);
+                }
             }
             else
             {
@@ -64,7 +80,69 @@ namespace CortanaHomeAutomation.MainApp
 
         public static async Task StoreAppState(AppState state)
         {
-            await XMLStorage.SaveObjectToXml(state, _settingsFilename);
+            var configFile = await TryLoadConfigFile();
+            await XMLStorage.SaveObjectToXmlByFile(state, configFile);
+        }
+
+        internal static async Task SaveAppStateToUserDefinedLocation(AppState appState)
+        {
+            var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+            savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+            savePicker.FileTypeChoices.Add("Plain Text", new List<string>() { ".xml" });
+            savePicker.SuggestedFileName = "HomeAutomationSettings";
+
+            Windows.Storage.StorageFile file = await savePicker.PickSaveFileAsync();
+            if (file != null)
+            {
+                var token = StorageApplicationPermissions.FutureAccessList.Add(file, _userDefinedSettingsToken);
+                LocalSettings.Values[_userDefinedSettingsToken] = token;
+
+                // Prevent updates to the remote version of the file until
+                // we finish making changes and call CompleteUpdatesAsync.
+                Windows.Storage.CachedFileManager.DeferUpdates(file);
+                // write to file
+                await XMLStorage.SaveObjectToXmlByFile(appState, file);
+                
+                // Let Windows know that we're finished changing the file so
+                // the other app can update the remote version of the file.
+                // Completing updates may require Windows to ask for user input.
+                Windows.Storage.Provider.FileUpdateStatus status = await Windows.Storage.CachedFileManager.CompleteUpdatesAsync(file);
+                if (status == Windows.Storage.Provider.FileUpdateStatus.Complete)
+                {
+                    Debug.WriteLine("File " + file.Name + " was saved.");
+                }
+                else
+                {
+                    Debug.WriteLine("File " + file.Name + " couldn't be saved.");
+                }
+            }
+            else
+            {
+                Debug.WriteLine("Saving file was cancelled.");
+            }
+        }
+
+        internal static async Task<AppState> LoadAppStateFromUserDefinedLocation()
+        {
+            AppState resultState = null;
+
+            var savePicker = new Windows.Storage.Pickers.FileOpenPicker();
+            savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+
+            Windows.Storage.StorageFile file = await savePicker.PickSingleFileAsync();
+            if (file != null)
+            {
+                var token = StorageApplicationPermissions.FutureAccessList.Add(file, _userDefinedSettingsToken);
+                LocalSettings.Values[_userDefinedSettingsToken] = token;
+
+                resultState = await XMLStorage.ReadObjectFromXmlFileAsync<AppState>(file);
+            }
+            else
+            {
+                Debug.WriteLine("Loading file was cancelled.");
+            }
+
+            return resultState;
         }
     }
 }

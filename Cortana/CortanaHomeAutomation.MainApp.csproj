@@ -111,6 +111,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utility\Extensions.cs" />
+    <Compile Include="Utility\SelectedIndexBooleanConverter.cs" />
     <Compile Include="Utility\BooleanToVisiblityConverter.cs" />
     <Compile Include="XMLStorage.cs" />
   </ItemGroup>

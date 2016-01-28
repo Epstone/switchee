@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CortanaHomeAutomation.MainApp.Utility;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -71,7 +72,7 @@ namespace CortanaHomeAutomation.MainApp
 
         private async void btn_add_Click(object sender, RoutedEventArgs e)
         {
-            dlgAddDevice dialog = new dlgAddDevice();
+            dlgAddDevice dialog = new dlgAddDevice(false);
             ContentDialogResult dialogResult = await dialog.ShowAsync();
 
             if (dialogResult == ContentDialogResult.Primary)
@@ -84,67 +85,25 @@ namespace CortanaHomeAutomation.MainApp
                 // User pressed Cancel or the back arrow.
             }
         }
-
-
-        private async void btn_save_OnClick(object sender, RoutedEventArgs e)
-        {
-            var savePicker = new Windows.Storage.Pickers.FileSavePicker();
-            savePicker.SuggestedStartLocation =
-                Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
-            // Dropdown of file types the user can save the file as
-            savePicker.FileTypeChoices.Add("Plain Text", new List<string>() { ".xml" });
-            // Default file name if the user does not type one in or select a file to replace
-            savePicker.SuggestedFileName = "HomeAutomationSettings";
-
-            Windows.Storage.StorageFile file = await savePicker.PickSaveFileAsync();
-            if (file != null)
-            {
-                // Prevent updates to the remote version of the file until
-                // we finish making changes and call CompleteUpdatesAsync.
-                Windows.Storage.CachedFileManager.DeferUpdates(file);
-                // write to file
-                await Windows.Storage.FileIO.WriteTextAsync(file, file.Name);
-                // Let Windows know that we're finished changing the file so
-                // the other app can update the remote version of the file.
-                // Completing updates may require Windows to ask for user input.
-                Windows.Storage.Provider.FileUpdateStatus status =
-                    await Windows.Storage.CachedFileManager.CompleteUpdatesAsync(file);
-                if (status == Windows.Storage.Provider.FileUpdateStatus.Complete)
-                {
-                    Debug.WriteLine("File " + file.Name + " was saved.");
-                }
-                else
-                {
-                    Debug.WriteLine("File " + file.Name + " couldn't be saved.");
-                }
-            }
-            else
-            {
-                Debug.WriteLine("Operation cancelled.");
-            }
-
-        }
-
+        
         private void btn_off_OnClick(object sender, RoutedEventArgs e)
         {
-            var btn = e.OriginalSource as Button;
-            if (btn != null)
-            {
-                var device = btn.DataContext as Device;
-                ExecuteCommand(device, false);
-            }
+            this.lv_Devices.SelectedIndex = -1;
+            var device = GetDeviceFromEvent(e);
+            ExecuteCommand(device, false);
         }
 
         private void btn_on_OnClick(object sender, RoutedEventArgs e)
         {
+            this.lv_Devices.SelectedIndex = -1;
             var device = GetDeviceFromEvent(e);
             ExecuteCommand(device, true);
         }
 
 
-        private void Btn_deleteDevice_OnClick(object sender, RoutedEventArgs e)
+        private void btn_deleteDevice_OnClick(object sender, RoutedEventArgs e)
         {
-            var device = GetDeviceFromEvent(e);
+            var device = GetSelectedDevice();
             this._state.Devices.Remove(device);
         }
 
@@ -159,28 +118,43 @@ namespace CortanaHomeAutomation.MainApp
             return null;
         }
 
-      
-
         private async void btn_editDevice_Click(object sender, RoutedEventArgs e)
         {
-            dlgAddDevice dialog = new dlgAddDevice();
-            var deviceForEdit = GetDeviceFromEvent(e) as Intertechno;
-            dialog.ViewModel.Device = deviceForEdit;
+            dlgAddDevice dialog = new dlgAddDevice(true);
+            var selectedDevice = GetSelectedDevice();
+            var clonedDeviceForEdits = selectedDevice.CloneJson();
+            dialog.ViewModel.Device = clonedDeviceForEdits;
 
             ContentDialogResult dialogResult = await dialog.ShowAsync();
 
             if (dialogResult == ContentDialogResult.Primary)
             {
-                var index = this._state.Devices.IndexOf(deviceForEdit);
-                this._state.Devices.Remove(deviceForEdit);
-                this._state.Devices.Insert(index, deviceForEdit);
+                var index = this._state.Devices.IndexOf(selectedDevice);
+                this._state.Devices.Remove(selectedDevice);
+                this._state.Devices.Insert(index, clonedDeviceForEdits);
 
                 await Startup.StoreAppState(_state);
             }
             else
             {
-                // User pressed Cancel or the back arrow.
+                // User pressed Cancel or the back arrow, so do nothing
             }
+        }
+
+        private Intertechno GetSelectedDevice()
+        {
+            return this.lv_Devices.SelectedItem as Intertechno;
+        }
+
+        private async void btn_saveConfig_Click(object sender, RoutedEventArgs e)
+        {
+            await Startup.SaveAppStateToUserDefinedLocation(this._state);
+        }
+
+        private async void btn_loadConfig_Click(object sender, RoutedEventArgs e)
+        {
+            var state = await Startup.LoadAppStateFromUserDefinedLocation();
+
         }
     }
 
@@ -202,6 +176,60 @@ namespace CortanaHomeAutomation.MainApp
                 Slavedip = "7"
             });
 
+            this.Add(new Intertechno()
+            {
+                UserDefinedName = "Rollo Küche",
+                Masterdip = "A",
+                Slavedip = "12"
+            });
+
+            this.Add(new Intertechno()
+            {
+                UserDefinedName = "Rollo Küche",
+                Masterdip = "A",
+                Slavedip = "12"
+            });
+
+            this.Add(new Intertechno()
+            {
+                UserDefinedName = "Rollo Küche",
+                Masterdip = "A",
+                Slavedip = "12"
+            });
+
+            this.Add(new Intertechno()
+            {
+                UserDefinedName = "Rollo Küche",
+                Masterdip = "A",
+                Slavedip = "12"
+            });
+
+            this.Add(new Intertechno()
+            {
+                UserDefinedName = "Rollo Küche",
+                Masterdip = "A",
+                Slavedip = "12"
+            });
+
+            this.Add(new Intertechno()
+            {
+                UserDefinedName = "Rollo Küche",
+                Masterdip = "A",
+                Slavedip = "12"
+            });
+            this.Add(new Intertechno()
+            {
+                UserDefinedName = "Rollo Küche",
+                Masterdip = "A",
+                Slavedip = "12"
+            });
+
+            this.Add(new Intertechno()
+            {
+                UserDefinedName = "Rollo Küche",
+                Masterdip = "A",
+                Slavedip = "12"
+            });
             this.Add(new Intertechno()
             {
                 UserDefinedName = "Rollo Küche",

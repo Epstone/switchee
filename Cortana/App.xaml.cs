@@ -28,6 +28,7 @@ namespace CortanaHomeAutomation.MainApp
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            
         }
 
 
@@ -61,7 +62,7 @@ namespace CortanaHomeAutomation.MainApp
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    appState = await Startup.LoadAppState();
+                    appState = await Startup.LoadAppStateInitial();
                 }
 
                 // Place the frame in the current Window
@@ -76,7 +77,7 @@ namespace CortanaHomeAutomation.MainApp
 
                 if (appState == null)
                 {
-                    appState = await Startup.LoadAppState();
+                    appState = await Startup.LoadAppStateInitial();
                 }
 
                 //rootFrame.Navigate(typeof(MainPage), e.Arguments);

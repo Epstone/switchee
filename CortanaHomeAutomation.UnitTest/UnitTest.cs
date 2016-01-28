@@ -25,7 +25,7 @@ namespace CortanaHomeAutomation.UnitTest
 
             string filename = "testdata_settings.xml";
 
-            await XMLStorage.SaveObjectToXml(state, filename);
+            await XMLStorage.SaveObjectToXmlByFileName(state, filename);
 
             var file = await ApplicationData.Current.LocalFolder.GetFileAsync(filename);
             var result = await XMLStorage.ReadObjectFromXmlFileAsync<AppState>(file);
@@ -38,7 +38,7 @@ namespace CortanaHomeAutomation.UnitTest
         [TestMethod]
         public async Task When_App_Starts_Try_To_Load_State_From_Future_AccessList()
         {
-            var appState= Startup.LoadAppState();
+            var appState= Startup.LoadAppStateInitial();
             Assert.IsNotNull(appState);
         }
         

@@ -19,12 +19,19 @@ namespace CortanaHomeAutomation.MainApp
             return objectFromXml;
         }
 
-        public static async Task SaveObjectToXml<T>(T objectToSave, string filename)
+        public static async Task SaveObjectToXmlByFileName<T>(T objectToSave, string filename)
         {
             // stores an object in XML format in file called 'filename'
             var serializer = new XmlSerializer(typeof(T));
             StorageFolder folder = ApplicationData.Current.LocalFolder;
             StorageFile file = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
+            await SaveObjectToXmlByFile(objectToSave, file);
+        }
+
+        public static async Task SaveObjectToXmlByFile<T>(T objectToSave, StorageFile file)
+        {
+            // stores an object in XML format in file called 'filename'
+            var serializer = new XmlSerializer(typeof(T));
             Stream stream = await file.OpenStreamForWriteAsync();
 
             using (stream)
