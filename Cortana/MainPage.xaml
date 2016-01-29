@@ -16,7 +16,7 @@
     </Page.Resources>
 
 
-
+    
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" VerticalAlignment="Top">
         <Grid.RowDefinitions>
@@ -96,10 +96,12 @@
                 
                 <AppBarButton Icon="Edit" Label="Ändern" Click="btn_editDevice_Click" IsEnabled="{Binding SelectedIndex, ElementName=lv_Devices, Converter={StaticResource SelectedIndexBooleanConverter}}"/>
                 <AppBarButton Icon="Delete" Label="Entfernen" Click="btn_deleteDevice_OnClick" IsEnabled="{Binding SelectedIndex, ElementName=lv_Devices, Converter={StaticResource SelectedIndexBooleanConverter}}"/>
+                <AppBarButton Icon="Setting" Label="Einstellungen" Click="btn_settings_Click" Name="btn_settings"/>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Save" Label="Konfiguration speichern" Click="btn_saveConfig_Click" Name="btn_saveConfig"/>
                 <AppBarButton Icon="OpenFile" Label="Konfiguration laden" Click="btn_loadConfig_Click" Name="btn_loadConfig"/>
+                
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

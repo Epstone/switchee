@@ -72,7 +72,7 @@ namespace CortanaHomeAutomation.MainApp
 
         private async void btn_add_Click(object sender, RoutedEventArgs e)
         {
-            dlgAddDevice dialog = new dlgAddDevice(false);
+            AddDeviceDialog dialog = new AddDeviceDialog(false);
             ContentDialogResult dialogResult = await dialog.ShowAsync();
 
             if (dialogResult == ContentDialogResult.Primary)
@@ -120,7 +120,7 @@ namespace CortanaHomeAutomation.MainApp
 
         private async void btn_editDevice_Click(object sender, RoutedEventArgs e)
         {
-            dlgAddDevice dialog = new dlgAddDevice(true);
+            AddDeviceDialog dialog = new AddDeviceDialog(true);
             var selectedDevice = GetSelectedDevice();
             var clonedDeviceForEdits = selectedDevice.CloneJson();
             dialog.ViewModel.Device = clonedDeviceForEdits;
@@ -155,6 +155,11 @@ namespace CortanaHomeAutomation.MainApp
         {
             var state = await Startup.LoadAppStateFromUserDefinedLocation();
 
+        }
+
+        private void btn_settings_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 
