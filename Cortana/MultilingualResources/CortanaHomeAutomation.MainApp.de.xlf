@@ -20,75 +20,75 @@
         </trans-unit>
         <trans-unit id="tbxGatewayAddress.Header" translate="yes" xml:space="preserve">
           <source>Gateway IP</source>
-          <target state="new">Gateway IP</target>
+          <target state="translated" state-qualifier="mt-suggestion">Gateway IP</target>
         </trans-unit>
         <trans-unit id="tbxGatewayPort.Header" translate="yes" xml:space="preserve">
           <source>Gateway Port</source>
-          <target state="new">Gateway Port</target>
+          <target state="translated">Gateway-Port</target>
         </trans-unit>
         <trans-unit id="tbxGatewayAddress.PlaceholderText" translate="yes" xml:space="preserve">
           <source>192.168.x....</source>
-          <target state="new">192.168.x....</target>
+          <target state="translated">192.168.x...</target>
         </trans-unit>
         <trans-unit id="tbxGatewayPort.PlaceholderText" translate="yes" xml:space="preserve">
           <source>49880</source>
-          <target state="new">49880</target>
+          <target state="translated">49880</target>
         </trans-unit>
         <trans-unit id="SettingsDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
           <source>Apply</source>
-          <target state="new">Apply</target>
+          <target state="translated">Übernehmen</target>
         </trans-unit>
         <trans-unit id="SettingsDialog.SecondaryButtonText" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="new">Cancel</target>
+          <target state="translated">Abbrechen</target>
         </trans-unit>
         <trans-unit id="AddDeviceDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
           <source>Create</source>
-          <target state="new">Create</target>
+          <target state="translated">Anlegen</target>
         </trans-unit>
         <trans-unit id="AddDeviceDialog.SecondaryButtonText" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="new">Cancel</target>
+          <target state="translated">Abbrechen</target>
         </trans-unit>
         <trans-unit id="AddDeviceDialog.Title" translate="yes" xml:space="preserve">
           <source>Add Device</source>
-          <target state="new">Add Device</target>
+          <target state="translated" state-qualifier="tm-suggestion">Gerät hinzufügen</target>
         </trans-unit>
         <trans-unit id="btnAddDevice.Label" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target state="new">add</target>
+          <target state="translated" state-qualifier="tm-suggestion">hinzufügen</target>
         </trans-unit>
         <trans-unit id="btnEditDevice.Label" translate="yes" xml:space="preserve">
           <source>edit</source>
-          <target state="new">edit</target>
+          <target state="translated" state-qualifier="tm-suggestion">bearbeiten</target>
         </trans-unit>
         <trans-unit id="btnRemoveDevice.Label" translate="yes" xml:space="preserve">
           <source>remove</source>
-          <target state="new">remove</target>
+          <target state="translated" state-qualifier="tm-suggestion">entfernen</target>
         </trans-unit>
         <trans-unit id="lvDeviceButtonOff.Content" translate="yes" xml:space="preserve">
           <source>Off</source>
-          <target state="new">Off</target>
+          <target state="translated" state-qualifier="tm-suggestion">Aus</target>
         </trans-unit>
         <trans-unit id="lvDeviceButtonOn.Content" translate="yes" xml:space="preserve">
           <source>On</source>
-          <target state="new">On</target>
+          <target state="translated" state-qualifier="tm-suggestion">Ein</target>
         </trans-unit>
         <trans-unit id="lvDevicesTitle.Text" translate="yes" xml:space="preserve">
           <source>Devices</source>
-          <target state="new">Devices</target>
+          <target state="translated" state-qualifier="tm-suggestion">Geräte</target>
         </trans-unit>
         <trans-unit id="btnShowSettings.Label" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target state="new">settings</target>
+          <target state="translated" state-qualifier="tm-suggestion">Einstellungen</target>
         </trans-unit>
         <trans-unit id="btnSaveXMLConfig.Label" translate="yes" xml:space="preserve">
           <source>save config</source>
-          <target state="new">save config</target>
+          <target state="translated">Konfiguration laden</target>
         </trans-unit>
         <trans-unit id="btnLoadXMLConfig" translate="yes" xml:space="preserve">
           <source>load config</source>
-          <target state="new">load config</target>
+          <target state="translated">Konfiguration speichern</target>
         </trans-unit>
       </group>
     </body>
