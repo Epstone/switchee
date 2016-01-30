@@ -1,0 +1,22 @@
+﻿<ContentDialog
+    x:Class="CortanaHomeAutomation.MainApp.AboutDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CortanaHomeAutomation.MainApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="About"
+    PrimaryButtonText="Close"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <Grid Height="121" VerticalAlignment="Stretch">
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,2,0,0" TextWrapping="Wrap" Text="Switchee Version 1.0" VerticalAlignment="Top" Width="243"/>
+        <TextBlock x:Name="Credits" HorizontalAlignment="Left" Margin="0,35,0,0" TextWrapping="Wrap" Text="Credits" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="260" FontWeight="Bold"/>
+        <TextBlock x:Name="CreditsContent" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shutdown graphic by http://www.flaticon.com from http://www.freepic.com.
+                   " VerticalAlignment="Top" Width="309" Height="Auto" Margin="0,55,0,0"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="0,95,0,0" TextWrapping="Wrap" Text="Licensed under Creative Commons License 3.0." VerticalAlignment="Top"/>
+
+    </Grid>
+</ContentDialog>

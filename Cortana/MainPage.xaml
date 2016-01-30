@@ -101,7 +101,7 @@
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Save" x:Uid="btnSaveXMLConfig" Label="Konfiguration speichern" Click="btn_saveConfig_Click" Name="btn_saveConfig"/>
                 <AppBarButton Icon="OpenFile" x:Uid="btnLoadXMLConfig" Label="Konfiguration laden" Click="btn_loadConfig_Click" Name="btn_loadConfig"/>
-                
+                <AppBarButton Icon="Contact" Label="About" Click="AppBarButton_Click" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

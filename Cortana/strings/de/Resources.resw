@@ -21,4 +21,58 @@
   <data name="SettingsDialog.Title" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
+  <data name="tbxGatewayAddress.Header" xml:space="preserve">
+    <value>Gateway IP</value>
+  </data>
+  <data name="tbxGatewayPort.Header" xml:space="preserve">
+    <value>Gateway-Port</value>
+  </data>
+  <data name="tbxGatewayAddress.PlaceholderText" xml:space="preserve">
+    <value>192.168.x...</value>
+  </data>
+  <data name="tbxGatewayPort.PlaceholderText" xml:space="preserve">
+    <value>49880</value>
+  </data>
+  <data name="SettingsDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Übernehmen</value>
+  </data>
+  <data name="SettingsDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="AddDeviceDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Anlegen</value>
+  </data>
+  <data name="AddDeviceDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="AddDeviceDialog.Title" xml:space="preserve">
+    <value>Gerät hinzufügen</value>
+  </data>
+  <data name="btnAddDevice.Label" xml:space="preserve">
+    <value>hinzufügen</value>
+  </data>
+  <data name="btnEditDevice.Label" xml:space="preserve">
+    <value>bearbeiten</value>
+  </data>
+  <data name="btnRemoveDevice.Label" xml:space="preserve">
+    <value>entfernen</value>
+  </data>
+  <data name="lvDeviceButtonOff.Content" xml:space="preserve">
+    <value>Aus</value>
+  </data>
+  <data name="lvDeviceButtonOn.Content" xml:space="preserve">
+    <value>Ein</value>
+  </data>
+  <data name="lvDevicesTitle.Text" xml:space="preserve">
+    <value>Geräte</value>
+  </data>
+  <data name="btnShowSettings.Label" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="btnSaveXMLConfig.Label" xml:space="preserve">
+    <value>Konfiguration laden</value>
+  </data>
+  <data name="btnLoadXMLConfig" xml:space="preserve">
+    <value>Konfiguration speichern</value>
+  </data>
 </root>

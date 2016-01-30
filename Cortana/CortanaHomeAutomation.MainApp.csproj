@@ -104,6 +104,9 @@
     <PRIResource Include="strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutDialog.xaml.cs">
+      <DependentUpon>AboutDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddDialogViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -132,6 +135,7 @@
     <None Include="CortanaHomeAutomation_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\logoMakerID.txt" />
     <Content Include="CustomVoiceCommandDefinitions.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -150,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AboutDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddDeviceDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

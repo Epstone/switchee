@@ -208,6 +208,12 @@ namespace CortanaHomeAutomation.MainApp
                 // User pressed Cancel or the back arrow.
             }
         }
+
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            AboutDialog aboutDialog = new AboutDialog();
+            await aboutDialog.ShowAsync();
+        }
     }
 
     public class SampleDeviceData : ObservableCollection<Device>
