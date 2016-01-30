@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="de" original="CORTANAHOMEAUTOMATION.MAINAPP/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1563.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="CORTANAHOMEAUTOMATION.MAINAPP/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
+        <trans-unit id="DeviceListTitle.Text" translate="yes" xml:space="preserve">
+          <source>Devices</source>
+          <target state="translated">Geräte</target>
+        </trans-unit>
+        <trans-unit id="WarningCommandNotSend" translate="yes" xml:space="preserve">
+          <source>Sorry, could not send command. Please check your settings.</source>
+          <target state="translated">Sorry, der Befehl konnte nich gesendet werden. Bitte die Einstellungen überprüfen.</target>
+        </trans-unit>
+        <trans-unit id="WarningIncorrectIPAddress" translate="yes" xml:space="preserve">
+          <source>Please configure a valid ip address for your gateway.</source>
+          <target state="translated">Bitte eine gültige IP Adresse für das Gateway in den "Einstellungen angeben.</target>
+        </trans-unit>
+        <trans-unit id="SettingsDialog.Title" translate="yes" xml:space="preserve">
+          <source>Settings</source>
+          <target state="translated">Einstellungen</target>
+        </trans-unit>
+        <trans-unit id="tbxGatewayAddress.Header" translate="yes" xml:space="preserve">
+          <source>Gateway IP</source>
+          <target state="new">Gateway IP</target>
+        </trans-unit>
+        <trans-unit id="tbxGatewayPort.Header" translate="yes" xml:space="preserve">
+          <source>Gateway Port</source>
+          <target state="new">Gateway Port</target>
+        </trans-unit>
+        <trans-unit id="tbxGatewayAddress.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>192.168.x....</source>
+          <target state="new">192.168.x....</target>
+        </trans-unit>
+        <trans-unit id="tbxGatewayPort.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>49880</source>
+          <target state="new">49880</target>
+        </trans-unit>
+        <trans-unit id="SettingsDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
+          <source>Apply</source>
+          <target state="new">Apply</target>
+        </trans-unit>
+        <trans-unit id="SettingsDialog.SecondaryButtonText" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="new">Cancel</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

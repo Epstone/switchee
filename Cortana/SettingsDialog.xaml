@@ -6,15 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    x:Uid="SettingsDialog"
     Title="Einstellungen"
     PrimaryButtonText="Übernehmen"
     SecondaryButtonText="Abbrechen"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick" Height="640">
 
-    <Grid Height="200">
-
-        <TextBox x:Name="tbx_gatewayAddress" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{x:Bind Path=GatewayIPAddress.Value, Mode=TwoWay}" PlaceholderText="z.B. 192.168.x...." VerticalAlignment="Top" Header="Gateway IP" Width="250" />
-        <TextBox x:Name="tbx_gatewayPort" HorizontalAlignment="Left" Margin="10,75,0,0" TextWrapping="Wrap" PlaceholderText="z.B. 49880" Text="{x:Bind Path=GatewayPort.Value, Mode=TwoWay}" VerticalAlignment="Top" Header="Gateway Port" Width="250"/>
+    <Grid Height="Auto">
+        <TextBox x:Name="tbx_gatewayAddress" x:Uid="tbxGatewayAddress" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{x:Bind Path=GatewayIPAddress.Value, Mode=TwoWay}" PlaceholderText="z.B. 192.168.x...." VerticalAlignment="Top" Header="Gateway IP" Width="250" />
+        <TextBox x:Name="tbx_gatewayPort" x:Uid="tbxGatewayPort" HorizontalAlignment="Left" Margin="10,75,0,0" TextWrapping="Wrap" PlaceholderText="z.B. 49880" Text="{x:Bind Path=GatewayPort.Value, Mode=TwoWay}" VerticalAlignment="Top" Header="Gateway Port" Width="250"/>
     </Grid>
 </ContentDialog>
