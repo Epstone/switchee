@@ -1,5 +1,5 @@
 ﻿<ContentDialog
-    x:Class="CortanaHomeAutomation.MainApp.Settings"
+    x:Class="CortanaHomeAutomation.MainApp.SettingsDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:CortanaHomeAutomation.MainApp"
@@ -14,7 +14,7 @@
 
     <Grid Height="200">
 
-        <TextBox x:Name="tbx_gatewayAddress" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" PlaceholderText="z.B. 192.168.x...." VerticalAlignment="Top" Header="Gateway IP" Width="250"/>
-        <TextBox x:Name="tbx_gatewayPort" HorizontalAlignment="Left" Margin="10,75,0,0" TextWrapping="Wrap" PlaceholderText="z.B. 49880" Text="49880" VerticalAlignment="Top" Header="Gateway Port" Width="250"/>
+        <TextBox x:Name="tbx_gatewayAddress" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{x:Bind Path=GatewayIPAddress.Value, Mode=TwoWay}" PlaceholderText="z.B. 192.168.x...." VerticalAlignment="Top" Header="Gateway IP" Width="250" />
+        <TextBox x:Name="tbx_gatewayPort" HorizontalAlignment="Left" Margin="10,75,0,0" TextWrapping="Wrap" PlaceholderText="z.B. 49880" Text="{x:Bind Path=GatewayPort.Value, Mode=TwoWay}" VerticalAlignment="Top" Header="Gateway Port" Width="250"/>
     </Grid>
 </ContentDialog>

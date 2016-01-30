@@ -97,6 +97,8 @@
     </Content>
     <None Include="ClassDiagram1.cd" />
     <None Include="project.json" />
+    <PRIResource Include="strings\de-DE\Resources.resw" />
+    <PRIResource Include="strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddDialogViewModel.cs" />

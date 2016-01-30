@@ -37,7 +37,7 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Width="100" Margin="0,4,14,0">
-                        <TextBlock Text="Geräte" Margin="0,0,18,20" 
+                        <TextBlock x:Uid="DeviceListTitle" Margin="0,0,18,20" 
                         Style="{StaticResource TitleTextBlockStyle}" MaxHeight="60"/>
                     </StackPanel>
                 </Grid>

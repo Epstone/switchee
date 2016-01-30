@@ -12,5 +12,7 @@ namespace CortanaHomeAutomation.MainApp
             this.Devices = new ObservableCollection<Device>();
         }
         public ObservableCollection<Device> Devices { get; set; }
+        public string GatewayIPAddress { get; set; }
+        public int GatewayPort { get; set; }
     }
 }

@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Net;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -21,17 +24,22 @@ namespace CortanaHomeAutomation.MainApp
     public sealed partial class MainPage : Page
     {
         private AppState _state;
-
+        ResourceLoader stringRessource = new Windows.ApplicationModel.Resources.ResourceLoader();
+        
         public bool ShowDeletionButtons { get; set; }
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this._state = (AppState)e.Parameter;
-
             this.lv_Devices.ItemsSource = _state.Devices;
 
             base.OnNavigatedTo(e);
+
+            if (string.IsNullOrEmpty(_state.GatewayIPAddress))
+            {
+                this.btn_settings_Click(this, null);
+            }
         }
 
         public MainPage()
@@ -53,10 +61,6 @@ namespace CortanaHomeAutomation.MainApp
             return devices;
         }
 
-
-        private string _gatewayIP = "192.168.0.156";
-        private int _gatewayPort = 49880;
-
         private void button_Click(object sender, RoutedEventArgs e)
         {
             Intertechno device = new Intertechno("A", "3");
@@ -65,9 +69,41 @@ namespace CortanaHomeAutomation.MainApp
 
         private void ExecuteCommand(Device device, bool action)
         {
-            string onCommand = device.CreateCommand(action);
+            IPAddress outValue;
+            if (!IPAddress.TryParse(_state.GatewayIPAddress, out outValue))
+            {
+                
+                ShowUserWarning(stringRessource.GetString("WarningIncorrectIPAddress"));
+                return;
+            }
 
-            GatewayClient.Send(onCommand, _gatewayIP, _gatewayPort);
+            try
+            {
+                string onCommand = device.CreateCommand(action);
+                GatewayClient.Send(onCommand, _state.GatewayIPAddress, _state.GatewayPort);
+            }
+            catch (Exception)
+            {
+                ShowUserWarning(stringRessource.GetString("WarningCommandNotSend"));
+            }
+        }
+
+        private async void ShowUserWarning(string message)
+        {
+            // Create the message dialog and set its content
+            var messageDialog = new MessageDialog(message);
+
+            // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
+            messageDialog.Commands.Add(new UICommand("Close", null));
+
+            // Set the command that will be invoked by default
+            messageDialog.DefaultCommandIndex = 0;
+
+            // Set the command to be invoked when escape is pressed
+            messageDialog.CancelCommandIndex = 1;
+
+            // Show the message dialog
+            await messageDialog.ShowAsync();
         }
 
         private async void btn_add_Click(object sender, RoutedEventArgs e)
@@ -85,7 +121,7 @@ namespace CortanaHomeAutomation.MainApp
                 // User pressed Cancel or the back arrow.
             }
         }
-        
+
         private void btn_off_OnClick(object sender, RoutedEventArgs e)
         {
             this.lv_Devices.SelectedIndex = -1;
@@ -154,12 +190,23 @@ namespace CortanaHomeAutomation.MainApp
         private async void btn_loadConfig_Click(object sender, RoutedEventArgs e)
         {
             var state = await Startup.LoadAppStateFromUserDefinedLocation();
-
         }
 
-        private void btn_settings_Click(object sender, RoutedEventArgs e)
+        private async void btn_settings_Click(object sender, RoutedEventArgs e)
         {
-            
+            SettingsDialog settingsDialog = new SettingsDialog(this._state.GatewayIPAddress, this._state.GatewayPort);
+            ContentDialogResult dialogResult = await settingsDialog.ShowAsync();
+
+            if (dialogResult == ContentDialogResult.Primary)
+            {
+                this._state.GatewayIPAddress = settingsDialog.GatewayIPAddress.Value;
+                this._state.GatewayPort = int.Parse(settingsDialog.GatewayPort.Value);
+                await Startup.StoreAppState(_state);
+            }
+            else
+            {
+                // User pressed Cancel or the back arrow.
+            }
         }
     }
 

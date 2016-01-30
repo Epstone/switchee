@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reactive.Bindings;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,13 +18,19 @@ using Windows.UI.Xaml.Navigation;
 
 namespace CortanaHomeAutomation.MainApp
 {
-    public sealed partial class Settings : ContentDialog
+    public sealed partial class SettingsDialog : ContentDialog
     {
-        public Settings()
+        public ReactiveProperty<string> GatewayIPAddress = new ReactiveProperty<string>();
+        public ReactiveProperty<string> GatewayPort = new ReactiveProperty<string>();
+
+        public SettingsDialog(string gatewayIpAddress, int gatewayPort)
         {
             this.InitializeComponent();
-        }
 
+            this.GatewayIPAddress.Value = string.IsNullOrEmpty(gatewayIpAddress) ? string.Empty : gatewayIpAddress;
+            this.GatewayPort.Value = gatewayPort == 0 ? "49880" : gatewayPort.ToString();
+        }
+        
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
         }
