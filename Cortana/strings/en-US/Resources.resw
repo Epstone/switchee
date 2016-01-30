@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DeviceListTitle.Text" xml:space="preserve">
-    <value>Devices</value>
-  </data>
   <data name="SettingsDialog.Title" xml:space="preserve">
     <value>Settings</value>
   </data>
@@ -140,6 +137,42 @@
   </data>
   <data name="WarningIncorrectIPAddress" xml:space="preserve">
     <value>Please configure a valid ip address for your gateway.</value>
+  </data>
+  <data name="AddDeviceDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="AddDeviceDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AddDeviceDialog.Title" xml:space="preserve">
+    <value>Add Device</value>
+  </data>
+  <data name="btnAddDevice.Label" xml:space="preserve">
+    <value>add</value>
+  </data>
+  <data name="btnEditDevice.Label" xml:space="preserve">
+    <value>edit</value>
+  </data>
+  <data name="btnLoadXMLConfig" xml:space="preserve">
+    <value>load config</value>
+  </data>
+  <data name="btnRemoveDevice.Label" xml:space="preserve">
+    <value>remove</value>
+  </data>
+  <data name="btnSaveXMLConfig.Label" xml:space="preserve">
+    <value>save config</value>
+  </data>
+  <data name="btnShowSettings.Label" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="lvDeviceButtonOff.Content" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="lvDeviceButtonOn.Content" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="lvDevicesTitle.Text" xml:space="preserve">
+    <value>Devices</value>
   </data>
   <data name="SettingsDialog.PrimaryButtonText" xml:space="preserve">
     <value>Apply</value>

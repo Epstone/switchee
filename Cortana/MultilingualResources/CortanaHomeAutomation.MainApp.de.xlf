@@ -6,10 +6,6 @@
     </header>
     <body>
       <group id="CORTANAHOMEAUTOMATION.MAINAPP/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
-        <trans-unit id="DeviceListTitle.Text" translate="yes" xml:space="preserve">
-          <source>Devices</source>
-          <target state="translated">Geräte</target>
-        </trans-unit>
         <trans-unit id="WarningCommandNotSend" translate="yes" xml:space="preserve">
           <source>Sorry, could not send command. Please check your settings.</source>
           <target state="translated">Sorry, der Befehl konnte nich gesendet werden. Bitte die Einstellungen überprüfen.</target>
@@ -45,6 +41,54 @@
         <trans-unit id="SettingsDialog.SecondaryButtonText" translate="yes" xml:space="preserve">
           <source>Cancel</source>
           <target state="new">Cancel</target>
+        </trans-unit>
+        <trans-unit id="AddDeviceDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
+          <source>Create</source>
+          <target state="new">Create</target>
+        </trans-unit>
+        <trans-unit id="AddDeviceDialog.SecondaryButtonText" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="new">Cancel</target>
+        </trans-unit>
+        <trans-unit id="AddDeviceDialog.Title" translate="yes" xml:space="preserve">
+          <source>Add Device</source>
+          <target state="new">Add Device</target>
+        </trans-unit>
+        <trans-unit id="btnAddDevice.Label" translate="yes" xml:space="preserve">
+          <source>add</source>
+          <target state="new">add</target>
+        </trans-unit>
+        <trans-unit id="btnEditDevice.Label" translate="yes" xml:space="preserve">
+          <source>edit</source>
+          <target state="new">edit</target>
+        </trans-unit>
+        <trans-unit id="btnRemoveDevice.Label" translate="yes" xml:space="preserve">
+          <source>remove</source>
+          <target state="new">remove</target>
+        </trans-unit>
+        <trans-unit id="lvDeviceButtonOff.Content" translate="yes" xml:space="preserve">
+          <source>Off</source>
+          <target state="new">Off</target>
+        </trans-unit>
+        <trans-unit id="lvDeviceButtonOn.Content" translate="yes" xml:space="preserve">
+          <source>On</source>
+          <target state="new">On</target>
+        </trans-unit>
+        <trans-unit id="lvDevicesTitle.Text" translate="yes" xml:space="preserve">
+          <source>Devices</source>
+          <target state="new">Devices</target>
+        </trans-unit>
+        <trans-unit id="btnShowSettings.Label" translate="yes" xml:space="preserve">
+          <source>settings</source>
+          <target state="new">settings</target>
+        </trans-unit>
+        <trans-unit id="btnSaveXMLConfig.Label" translate="yes" xml:space="preserve">
+          <source>save config</source>
+          <target state="new">save config</target>
+        </trans-unit>
+        <trans-unit id="btnLoadXMLConfig" translate="yes" xml:space="preserve">
+          <source>load config</source>
+          <target state="new">load config</target>
         </trans-unit>
       </group>
     </body>

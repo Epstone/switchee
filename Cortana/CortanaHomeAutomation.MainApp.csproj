@@ -99,7 +99,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="ClassDiagram1.cd" />
     <None Include="project.json" />
     <PRIResource Include="strings\de\Resources.resw" />
     <PRIResource Include="strings\en-US\Resources.resw" />
