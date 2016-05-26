@@ -11,12 +11,26 @@
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
 
-    <Grid Height="121" VerticalAlignment="Stretch">
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,2,0,0" TextWrapping="Wrap" Text="Switchee Version 1.0" VerticalAlignment="Top" Width="243"/>
-        <TextBlock x:Name="Credits" HorizontalAlignment="Left" Margin="0,35,0,0" TextWrapping="Wrap" Text="Credits" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="260" FontWeight="Bold"/>
+    <Grid Height="221" VerticalAlignment="Stretch">
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243" Height="100">
+    		<Run Text="Switchee"/>
+    		<Run Text=" created "/>
+    		<Run Text="by"/>
+    		<LineBreak/>
+    		<Run Text="Patrick"/>
+    		<Run Text=" Epstein"/>
+    		<LineBreak/>
+    		<Run Text="Bruchackerhof 1"/>
+    		<LineBreak/>
+    		<Run Text="64560 Riedstadt"/>
+    		<LineBreak/>
+    		<Run Text="Support: "/>
+            <Hyperlink NavigateUri="http://bit.ly/switchee">http://bit.ly/switchee</Hyperlink>
+        </TextBlock>
+        <TextBlock x:Name="Credits" HorizontalAlignment="Left" Margin="0,131,0,0" TextWrapping="Wrap" Text="Credits" VerticalAlignment="Top" Width="260" FontWeight="Bold"/>
         <TextBlock x:Name="CreditsContent" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shutdown graphic by http://www.flaticon.com from http://www.freepic.com.
-                   " VerticalAlignment="Top" Width="309" Height="Auto" Margin="0,55,0,0"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="0,95,0,0" TextWrapping="Wrap" Text="Licensed under Creative Commons License 3.0." VerticalAlignment="Top"/>
+                   " VerticalAlignment="Top" Width="309" Height="Auto" Margin="0,151,0,0"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="0,191,0,0" TextWrapping="Wrap" Text="Licensed under Creative Commons License 3.0." VerticalAlignment="Top"/>
 
     </Grid>
 </ContentDialog>

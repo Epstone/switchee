@@ -35,6 +35,8 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="44*"/>
+                        <ColumnDefinition Width="15*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Width="100" Margin="0,4,14,0">
                         <TextBlock x:Uid="lvDevicesTitle" Margin="0,0,18,20" 

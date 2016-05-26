@@ -99,7 +99,7 @@ namespace CortanaHomeAutomation.MainApp
 
                 // Prevent updates to the remote version of the file until
                 // we finish making changes and call CompleteUpdatesAsync.
-                Windows.Storage.CachedFileManager.DeferUpdates(file);
+                //Windows.Storage.CachedFileManager.DeferUpdates(file);  crashes when used with dropbox
                 // write to file
                 await XMLStorage.SaveObjectToXmlByFile(appState, file);
                 
