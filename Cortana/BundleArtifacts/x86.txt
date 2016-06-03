@@ -1,2 +1,2 @@
-MainPackage=C:\Projects\CortanaHomeAutomation\Cortana\bin\x86\Debug\CortanaHomeAutomation.Core_1.0.1.0_x86_Debug.appx
-SymbolPackage=C:\Projects\CortanaHomeAutomation\Cortana\AppPackages\CortanaHomeAutomation.Core_1.0.1.0_Debug_Test\CortanaHomeAutomation.Core_1.0.1.0_x86_Debug.appxsym
+MainPackage=C:\Projects\Switchee2\Cortana\bin\x86\Release\CortanaHomeAutomation.MainApp_1.1.5.0_x86.appx
+SymbolPackage=C:\Projects\Switchee2\Cortana\AppPackages\CortanaHomeAutomation.MainApp_1.1.5.0_Test\CortanaHomeAutomation.MainApp_1.1.5.0_x86.appxsym

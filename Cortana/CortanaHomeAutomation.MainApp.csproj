@@ -16,10 +16,11 @@
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>CortanaHomeAutomation_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>CortanaHomeAutomation.MainApp_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>03D5A84F57167C65EE1D791F1464FFBBD25BC11D</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -94,12 +95,21 @@
     <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
     <MultilingualFallbackLanguage>en-US</MultilingualFallbackLanguage>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SwitcheeKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="CortanaHomeAutomation.MainApp_StoreKey.pfx" />
+    <None Include="CortanaHomeAutomation.MainApp_TemporaryKey.pfx" />
     <None Include="project.json" />
+    <None Include="SwitcheeKey.pfx" />
     <PRIResource Include="strings\de\Resources.resw" />
     <PRIResource Include="strings\en-US\Resources.resw" />
   </ItemGroup>
@@ -135,6 +145,12 @@
     <None Include="CortanaHomeAutomation_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\200x200.scale-150.png" />
+    <Content Include="Assets\200x200.scale-200.png" />
+    <Content Include="Assets\200x200.scale-400.png" />
+    <Content Include="Assets\71x71.scale-100.png" />
+    <Content Include="Assets\71x71.scale-200.png" />
+    <Content Include="Assets\71x71.scale-400.png" />
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-125.png" />
     <Content Include="Assets\BadgeLogo.scale-150.png" />
@@ -143,8 +159,19 @@
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\Logo.svg" />
     <Content Include="Assets\logoMakerID.txt" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
     <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
     <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\Square310x310Logo.scale-125.png" />
+    <Content Include="Assets\Square310x310Logo.scale-150.png" />
+    <Content Include="Assets\Square310x310Logo.scale-200.png" />
+    <Content Include="Assets\Square310x310Logo.scale-400.png" />
     <Content Include="Assets\Square44x44Logo.scale-100.png" />
     <Content Include="Assets\Square44x44Logo.scale-125.png" />
     <Content Include="Assets\Square44x44Logo.scale-150.png" />
@@ -154,6 +181,8 @@
     <Content Include="Assets\Square44x44Logo.targetsize-20.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-20_altform-unplated.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256_altform-unplated.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-30.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-30_altform-unplated.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
@@ -178,12 +207,15 @@
     <Content Include="Assets\Square71x71Logo.scale-125.png" />
     <Content Include="Assets\Square71x71Logo.scale-150.png" />
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\Square71x71Logo.scale-400.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-125.png" />
     <Content Include="Assets\StoreLogo.scale-150.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="CustomVoiceCommandDefinitions.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -223,6 +255,11 @@
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="MultilingualResources\CortanaHomeAutomation.MainApp.de.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
   </ItemGroup>
   <Import Project="..\GatewayLib\GatewayLib.projitems" Label="Shared" />
   <Import Project="..\Dto\Dto.projitems" Label="Shared" />

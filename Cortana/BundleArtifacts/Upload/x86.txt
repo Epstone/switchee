@@ -1,0 +1,2 @@
+MainPackage=C:\Projects\Switchee2\Cortana\bin\x86\Release\Upload\CortanaHomeAutomation.MainApp_1.1.5.0_x86.appx
+SymbolPackage=C:\Projects\Switchee2\Cortana\AppPackages\CortanaHomeAutomation.MainApp_1.1.5.0\CortanaHomeAutomation.MainApp_1.1.5.0_x86.appxsym

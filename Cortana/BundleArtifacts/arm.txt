@@ -1,2 +1,7 @@
-MainPackage=C:\Projects\CortanaHomeAutomation\Cortana\bin\ARM\Release\CortanaHomeAutomation.Core_1.0.0.0_ARM.appx
-SymbolPackage=C:\Projects\CortanaHomeAutomation\Cortana\AppPackages\CortanaHomeAutomation.Core_1.0.0.0_Test\CortanaHomeAutomation.Core_1.0.0.0_ARM.appxsym
+MainPackage=C:\Projects\Switchee2\Cortana\bin\ARM\Release\CortanaHomeAutomation.MainApp_1.1.5.0_ARM.appx
+SymbolPackage=C:\Projects\Switchee2\Cortana\AppPackages\CortanaHomeAutomation.MainApp_1.1.5.0_Test\CortanaHomeAutomation.MainApp_1.1.5.0_ARM.appxsym
+ResourcePack=C:\Projects\Switchee2\Cortana\bin\ARM\Release\CortanaHomeAutomation.MainApp_1.1.5.0_language-de.appx
+ResourcePack=C:\Projects\Switchee2\Cortana\bin\ARM\Release\CortanaHomeAutomation.MainApp_1.1.5.0_scale-100.appx
+ResourcePack=C:\Projects\Switchee2\Cortana\bin\ARM\Release\CortanaHomeAutomation.MainApp_1.1.5.0_scale-125.appx
+ResourcePack=C:\Projects\Switchee2\Cortana\bin\ARM\Release\CortanaHomeAutomation.MainApp_1.1.5.0_scale-150.appx
+ResourcePack=C:\Projects\Switchee2\Cortana\bin\ARM\Release\CortanaHomeAutomation.MainApp_1.1.5.0_scale-400.appx
