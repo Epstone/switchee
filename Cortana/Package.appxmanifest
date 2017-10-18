@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="39203Epstone.Switchee" Publisher="CN=A5795295-6F17-48C7-9CB6-1F3CF2C48D76" Version="1.1.5.0" />
+  <Identity Name="39203Epstone.Switchee" Publisher="CN=Patrick Epstein" Version="1.1.5.0" />
   <mp:PhoneIdentity PhoneProductId="c3fadc4d-6a10-45e9-88ca-7a3da341d6f8" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Switchee</DisplayName>

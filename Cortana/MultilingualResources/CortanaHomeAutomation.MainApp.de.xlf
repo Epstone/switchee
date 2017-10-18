@@ -84,11 +84,11 @@
         </trans-unit>
         <trans-unit id="btnSaveXMLConfig.Label" translate="yes" xml:space="preserve">
           <source>save config</source>
-          <target state="translated">Konfiguration laden</target>
-        </trans-unit>
-        <trans-unit id="btnLoadXMLConfig" translate="yes" xml:space="preserve">
-          <source>load config</source>
           <target state="translated">Konfiguration speichern</target>
+        </trans-unit>
+        <trans-unit id="btnLoadXMLConfig.Label" translate="yes" xml:space="preserve">
+          <source>load config</source>
+          <target state="translated">Konfiguration laden</target>
         </trans-unit>
       </group>
     </body>
