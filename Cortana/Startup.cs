@@ -10,6 +10,8 @@ using Windows.Storage.AccessCache;
 
 namespace CortanaHomeAutomation.MainApp
 {
+    using Windows.Storage.Pickers;
+
     public class Startup
     {
         private const string _settingsFilename = "HomeAutomationSettings.xml";
@@ -126,10 +128,13 @@ namespace CortanaHomeAutomation.MainApp
         {
             AppState resultState = null;
 
-            var savePicker = new Windows.Storage.Pickers.FileOpenPicker();
-            savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+            var savePicker = new FileOpenPicker();
+            savePicker.ViewMode = PickerViewMode.List;
+            savePicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+            savePicker.FileTypeFilter.Add(".xml");
 
-            Windows.Storage.StorageFile file = await savePicker.PickSingleFileAsync();
+
+            StorageFile file = await savePicker.PickSingleFileAsync();
             if (file != null)
             {
                 var token = StorageApplicationPermissions.FutureAccessList.Add(file, _userDefinedSettingsToken);
