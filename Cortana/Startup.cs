@@ -38,6 +38,7 @@ namespace CortanaHomeAutomation.MainApp
                 }
                 catch (Exception ex)
                 {
+                    // try to overwrite inconsistent state or crash
                     await StoreInitialAppState(resultState);
                 }
             }
@@ -128,13 +129,13 @@ namespace CortanaHomeAutomation.MainApp
         {
             AppState resultState = null;
 
-            var savePicker = new FileOpenPicker();
-            savePicker.ViewMode = PickerViewMode.List;
-            savePicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-            savePicker.FileTypeFilter.Add(".xml");
+            var loadConfigPicker = new FileOpenPicker();
+            loadConfigPicker.ViewMode = PickerViewMode.List;
+            loadConfigPicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+            loadConfigPicker.FileTypeFilter.Add(".xml");
 
 
-            StorageFile file = await savePicker.PickSingleFileAsync();
+            StorageFile file = await loadConfigPicker.PickSingleFileAsync();
             if (file != null)
             {
                 var token = StorageApplicationPermissions.FutureAccessList.Add(file, _userDefinedSettingsToken);

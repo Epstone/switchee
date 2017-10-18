@@ -31,15 +31,9 @@ namespace CortanaHomeAutomation.MainApp
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this._state = (AppState)e.Parameter;
-            this.lv_Devices.ItemsSource = _state.Devices;
-
+            var state = (AppState)e.Parameter;
+            this.UpdateViewFromState(state);
             base.OnNavigatedTo(e);
-
-            if (string.IsNullOrEmpty(_state.GatewayIPAddress))
-            {
-                this.btn_settings_Click(this, null);
-            }
         }
 
         public MainPage()
@@ -190,6 +184,18 @@ namespace CortanaHomeAutomation.MainApp
         private async void btn_loadConfig_Click(object sender, RoutedEventArgs e)
         {
             var state = await Startup.LoadAppStateFromUserDefinedLocation();
+            this.UpdateViewFromState(state);
+        }
+
+        private void UpdateViewFromState(AppState state)
+        {
+            this._state = state;
+            this.lv_Devices.ItemsSource = _state.Devices;
+
+            if (string.IsNullOrEmpty(_state.GatewayIPAddress))
+            {
+                this.btn_settings_Click(this, null);
+            }
         }
 
         private async void btn_settings_Click(object sender, RoutedEventArgs e)

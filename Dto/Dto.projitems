@@ -11,7 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Device.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DeviceStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elro.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Intertechno.cs" />
   </ItemGroup>
