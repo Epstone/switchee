@@ -46,12 +46,6 @@
             return devices;
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            Intertechno device = new Intertechno("A", "3");
-            ExecuteCommand(device, true);
-        }
-
         private void ExecuteCommand(Device device, bool action)
         {
             IPAddress outValue;
