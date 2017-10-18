@@ -3,15 +3,7 @@
 <VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
   <CommandSet xml:lang="DE-de" Name="CustomCommands">
     <CommandPrefix>Bitte</CommandPrefix>
-    <Example>Sag mir wer ist die beste Frau auf der Welt?</Example>
-    <Command Name="Girlfriend">
-      <Example>Wer ist die beste Frau auf der Welt?</Example>
-      <ListenFor>Wer ist die beste Frau auf der Welt?</ListenFor>
-      <ListenFor>Wer ist die schönste Frau [auf] [der] [Welt]?</ListenFor>
-      <Feedback>Das ist Raphaela Schwarz und sie backt vorzügliche Plätzchen! Du solltest sie mal wieder zum Essen ausführen.</Feedback>
-      <Navigate/>
-    </Command>
-    
+    <Example>Bitte Schließe/Öffne alle Rolladen im Wohnzimmer</Example>
     <Command Name="Rolladen">
       <Example>Schließe/Öffne alle Rolladen im Wohnzimmer</Example>
       <ListenFor>{RolladenAktion} [alle] Rolladen [im] {Zimmer}</ListenFor>
