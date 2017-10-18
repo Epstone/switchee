@@ -14,7 +14,7 @@
 
     public sealed partial class MainPage
     {
-        private AppState _state;
+        private AppState currentAppState;
         private readonly ResourceLoader stringRessource = new ResourceLoader();
 
         public MainPage()
@@ -55,7 +55,7 @@
         private void ExecuteCommand(Device device, bool action)
         {
             IPAddress outValue;
-            if (!IPAddress.TryParse(_state.GatewayIPAddress, out outValue))
+            if (!IPAddress.TryParse(currentAppState.GatewayIPAddress, out outValue))
             {
                 ShowUserWarning(stringRessource.GetString("WarningIncorrectIPAddress"));
                 return;
@@ -64,7 +64,7 @@
             try
             {
                 string onCommand = device.CreateCommand(action);
-                GatewayClient.Send(onCommand, _state.GatewayIPAddress, _state.GatewayPort);
+                GatewayClient.Send(onCommand, currentAppState.GatewayIPAddress, currentAppState.GatewayPort);
             }
             catch (Exception)
             {
@@ -97,8 +97,8 @@
 
             if (dialogResult == ContentDialogResult.Primary)
             {
-                _state.Devices.Add(dialog.ViewModel.Device);
-                await Startup.StoreAppState(_state);
+                currentAppState.Devices.Add(dialog.ViewModel.Device);
+                await Startup.StoreAppState(currentAppState);
             }
         }
 
@@ -120,7 +120,7 @@
         private void btn_deleteDevice_OnClick(object sender, RoutedEventArgs e)
         {
             var device = GetSelectedDevice();
-            _state.Devices.Remove(device);
+            currentAppState.Devices.Remove(device);
         }
 
         private Device GetDeviceFromEvent(RoutedEventArgs e)
@@ -145,11 +145,11 @@
 
             if (dialogResult == ContentDialogResult.Primary)
             {
-                var index = _state.Devices.IndexOf(selectedDevice);
-                _state.Devices.Remove(selectedDevice);
-                _state.Devices.Insert(index, clonedDeviceForEdits);
+                var index = currentAppState.Devices.IndexOf(selectedDevice);
+                currentAppState.Devices.Remove(selectedDevice);
+                currentAppState.Devices.Insert(index, clonedDeviceForEdits);
 
-                await Startup.StoreAppState(_state);
+                await Startup.StoreAppState(currentAppState);
             }
         }
 
@@ -160,7 +160,7 @@
 
         private async void btn_saveConfig_Click(object sender, RoutedEventArgs e)
         {
-            await Startup.SaveAppStateToUserDefinedLocation(_state);
+            await Startup.SaveAppStateToUserDefinedLocation(currentAppState);
         }
 
         private async void btn_loadConfig_Click(object sender, RoutedEventArgs e)
@@ -171,10 +171,10 @@
 
         private void UpdateViewFromState(AppState state)
         {
-            _state = state;
-            lv_Devices.ItemsSource = _state.Devices;
+            currentAppState = state;
+            lv_Devices.ItemsSource = currentAppState.Devices;
 
-            if (string.IsNullOrEmpty(_state.GatewayIPAddress))
+            if (string.IsNullOrEmpty(currentAppState.GatewayIPAddress))
             {
                 ShowSettingsDialog();
             }
@@ -187,14 +187,14 @@
 
         private async void btn_settings_Click(object sender, RoutedEventArgs e)
         {
-            SettingsDialog settingsDialog = new SettingsDialog(_state.GatewayIPAddress, _state.GatewayPort);
+            SettingsDialog settingsDialog = new SettingsDialog(currentAppState.GatewayIPAddress, currentAppState.GatewayPort);
             ContentDialogResult dialogResult = await settingsDialog.ShowAsync();
 
             if (dialogResult == ContentDialogResult.Primary)
             {
-                _state.GatewayIPAddress = settingsDialog.GatewayIPAddress.Value;
-                _state.GatewayPort = int.Parse(settingsDialog.GatewayPort.Value);
-                await Startup.StoreAppState(_state);
+                currentAppState.GatewayIPAddress = settingsDialog.GatewayIPAddress.Value;
+                currentAppState.GatewayPort = int.Parse(settingsDialog.GatewayPort.Value);
+                await Startup.StoreAppState(currentAppState);
             }
         }
 
