@@ -12,7 +12,7 @@ namespace CortanaHomeAutomation.MainApp
         public AddDialogViewModel()
         {
             this.MasterSwitches = new ObservableCollection<string>();
-            for (char i = 'A'; i < 'G'; i++)
+            for (char i = 'A'; i <= 'X'; i++)
             {
                 MasterSwitches.Add(i.ToString());
             }
