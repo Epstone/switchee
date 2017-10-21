@@ -18,6 +18,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace CortanaHomeAutomation.MainApp
 {
+    using System.Diagnostics;
+    using System.Net;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Windows.Networking;
+    using Windows.Networking.Sockets;
+    using Windows.Storage.Streams;
+
     public sealed partial class SettingsDialog : ContentDialog
     {
         public ReactiveProperty<string> GatewayIPAddress = new ReactiveProperty<string>();
@@ -30,13 +38,70 @@ namespace CortanaHomeAutomation.MainApp
             this.GatewayIPAddress.Value = string.IsNullOrEmpty(gatewayIpAddress) ? string.Empty : gatewayIpAddress;
             this.GatewayPort.Value = gatewayPort == 0 ? "49880" : gatewayPort.ToString();
         }
-        
+
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+        }
+
+        private void Autodetect_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Listen().ContinueWith(x=>Send()).Wait();
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                //Handle exception here.            
+            }
+        }
+
+        private DatagramSocket listenerSocket;
+
+        private async Task Listen()
+        {
+            if (listenerSocket == null)
+            {
+                listenerSocket = new DatagramSocket();
+                listenerSocket.MessageReceived += MessageReceived;
+                await listenerSocket.BindServiceNameAsync("123411");
+            }
+        }
+
+        private async Task Send()
+        {
+            IOutputStream outputStream = await listenerSocket.GetOutputStreamAsync(new HostName("192.168.0.255"),"49880");
+
+            using (DataWriter writer = new DataWriter(outputStream))
+            {
+                writer.WriteString("SEARCH HCGW");
+                await writer.StoreAsync();
+            }
+        }
+
+        //private object GetBroadcastAddress(IPAddress localIP, IPAddress subnetIP)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        async void MessageReceived(DatagramSocket socket, DatagramSocketMessageReceivedEventArgs args)
+        {
+            DataReader reader = args.GetDataReader();
+            uint len = reader.UnconsumedBufferLength;
+            string msg = reader.ReadString(len);
+
+            string remoteHost = args.RemoteAddress.DisplayName;
+            reader.Dispose();
+
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                this.tbx_gatewayAddress.Text = msg;
+            });
+
         }
     }
 }
