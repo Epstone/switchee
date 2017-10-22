@@ -20,9 +20,11 @@ namespace CortanaHomeAutomation.MainApp
 {
     using System.Diagnostics;
     using System.Net;
+    using System.Net.NetworkInformation;
     using System.Text;
     using System.Threading.Tasks;
     using Windows.Networking;
+    using Windows.Networking.Connectivity;
     using Windows.Networking.Sockets;
     using Windows.Storage.Streams;
 
@@ -74,19 +76,63 @@ namespace CortanaHomeAutomation.MainApp
 
         private async Task Send()
         {
-            IOutputStream outputStream = await listenerSocket.GetOutputStreamAsync(new HostName("192.168.0.255"),"49880");
+            string localIp = GetLocalIp(HostNameType.Ipv4);
+            var ipAddress = IPAddress.Parse(localIp);
+            var broadastAddress = GetBroadastAddress(ipAddress);
+
+            IOutputStream outputStream = await listenerSocket.GetOutputStreamAsync(new HostName(broadastAddress.ToString()),"49880");
 
             using (DataWriter writer = new DataWriter(outputStream))
             {
                 writer.WriteString("SEARCH HCGW");
+                string result = IPAddress.Broadcast.ToString();
                 await writer.StoreAsync();
             }
         }
 
-        //private object GetBroadcastAddress(IPAddress localIP, IPAddress subnetIP)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public static IPAddress GetSubnetMask(IPAddress hostAddress)
+        {
+            var addressBytes = hostAddress.GetAddressBytes();
+            if (addressBytes[0] >= 1 && addressBytes[0] <= 126)
+                return IPAddress.Parse("255.0.0.0");
+            else if (addressBytes[0] >= 128 && addressBytes[0] <= 191)
+                return IPAddress.Parse("255.255.255.0");
+            else if (addressBytes[0] >= 192 && addressBytes[0] <= 223)
+                return IPAddress.Parse("255.255.255.0");
+            else
+                throw new ArgumentOutOfRangeException();
+        }
+
+        //This method is the one that will give the Directed broadcast address:
+        public static IPAddress GetBroadastAddress(IPAddress hostIPAddress)
+        {
+            var subnetAddress = GetSubnetMask(hostIPAddress);
+            var deviceAddressBytes = hostIPAddress.GetAddressBytes();
+            var subnetAddressBytes = subnetAddress.GetAddressBytes();
+            if (deviceAddressBytes.Length != subnetAddressBytes.Length)
+                throw new ArgumentOutOfRangeException();
+            var broadcastAddressBytes = new byte[deviceAddressBytes.Length];
+            for (var i = 0; i < broadcastAddressBytes.Length; i++)
+                broadcastAddressBytes[i] = (byte)(deviceAddressBytes[i] | subnetAddressBytes[i] ^ 255);
+            return new IPAddress(broadcastAddressBytes);
+        }
+
+        public static string GetLocalIp(HostNameType hostNameType = HostNameType.Ipv4)
+        {
+            var internetConnectionProfile = NetworkInformation.GetInternetConnectionProfile();
+
+            if (internetConnectionProfile?.NetworkAdapter == null) return null;
+            var hostname =
+                NetworkInformation.GetHostNames()
+                    .FirstOrDefault(
+                        hostName =>
+                            hostName.Type == hostNameType &&
+                            hostName.IPInformation?.NetworkAdapter != null &&
+                            hostName.IPInformation.NetworkAdapter.NetworkAdapterId == internetConnectionProfile.NetworkAdapter.NetworkAdapterId);
+
+            // the ip address
+            return hostname?.CanonicalName;
+        }
 
         async void MessageReceived(DatagramSocket socket, DatagramSocketMessageReceivedEventArgs args)
         {
@@ -94,12 +140,13 @@ namespace CortanaHomeAutomation.MainApp
             uint len = reader.UnconsumedBufferLength;
             string msg = reader.ReadString(len);
 
+            string[] responseData = msg.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries);
             string remoteHost = args.RemoteAddress.DisplayName;
             reader.Dispose();
 
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                this.tbx_gatewayAddress.Text = msg;
+                this.tbx_gatewayAddress.Text = remoteHost;
             });
 
         }

@@ -124,6 +124,7 @@
     <Compile Include="AddDeviceDialog.xaml.cs">
       <DependentUpon>AddDeviceDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IpAddressExtensions.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
