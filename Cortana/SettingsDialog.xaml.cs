@@ -40,7 +40,7 @@ namespace CortanaHomeAutomation.MainApp
             }
             catch (Exception ex)
             {
-                Debug.Write(ex);
+                Debug.Write(ex); // todo open messagebox and print error
             }
         }
 
