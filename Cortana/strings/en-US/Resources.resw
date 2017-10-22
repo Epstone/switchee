@@ -180,4 +180,7 @@
   <data name="SettingsDialog.SecondaryButtonText" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="btnAutodetectGateway.Content" xml:space="preserve">
+    <value>Detect Gateway</value>
+  </data>
 </root>

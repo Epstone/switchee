@@ -89,21 +89,15 @@ namespace CortanaHomeAutomation.MainApp
 
         async void MessageReceived(DatagramSocket socket, DatagramSocketMessageReceivedEventArgs args)
         {
-            string remoteHost;
-            using (DataReader reader = args.GetDataReader())
-            {
-                uint len = reader.UnconsumedBufferLength;
-                string msg = reader.ReadString(len);
-
+            //todo
+            //using (DataReader reader = args.GetDataReader())
+            //{
+                //uint len = reader.UnconsumedBufferLength;
+                //string msg = reader.ReadString(len);
                 //string[] responseData = msg.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries);
-                remoteHost = args.RemoteAddress.DisplayName;
-            }
+            //}
 
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                this.tbx_gatewayAddress.Text = remoteHost;
-            });
-
+            this.GatewayIPAddress.Value = args.RemoteAddress.DisplayName;
         }
     }
 }

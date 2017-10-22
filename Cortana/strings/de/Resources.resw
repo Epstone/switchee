@@ -180,4 +180,7 @@
   <data name="btnLoadXMLConfig" xml:space="preserve">
     <value>Konfiguration laden</value>
   </data>
+  <data name="btnAutodetectGateway.Content" xml:space="preserve">
+    <value>Suche Gateway</value>
+  </data>
 </root>

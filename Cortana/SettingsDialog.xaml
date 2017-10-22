@@ -14,7 +14,7 @@
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick" MaxHeight="300">
 
     <StackPanel Height="164">
-        <Button x:Name="Autodetect" x:Uid="btnAutodetectGateway"  HorizontalAlignment="Left" Width="250" RenderTransformOrigin="0.5,0.499" Height="32" Click="Autodetect_Click" Content="Auto Detect" />
+        <Button x:Name="Autodetect" x:Uid="btnAutodetectGateway" HorizontalAlignment="Left" Width="250" RenderTransformOrigin="0.5,0.499" Height="32" Click="Autodetect_Click" />
         <TextBox x:Name="tbx_gatewayAddress" x:Uid="tbxGatewayAddress" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{x:Bind Mode=TwoWay, Path=GatewayIPAddress.Value}" PlaceholderText="z.B. 192.168.x...." VerticalAlignment="Top" Header="Gateway IP" Width="250" />
         <TextBox x:Name="tbx_gatewayPort" x:Uid="tbxGatewayPort" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="z.B. 49880" Text="{x:Bind Mode=TwoWay, Path=GatewayPort.Value}" VerticalAlignment="Top" Header="Gateway Port" Width="250"/>
     </StackPanel>
