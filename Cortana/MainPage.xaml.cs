@@ -3,6 +3,7 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Net;
+    using System.Threading.Tasks;
     using Windows.ApplicationModel.Resources;
     using Windows.Foundation;
     using Windows.UI.Popups;
@@ -160,36 +161,38 @@
         private async void btn_loadConfig_Click(object sender, RoutedEventArgs e)
         {
             var state = await Startup.LoadAppStateFromUserDefinedLocation();
-            UpdateViewFromState(state);
+            await UpdateViewFromState(state);
         }
 
-        private void UpdateViewFromState(AppState state)
+        private async Task UpdateViewFromState(AppState state)
         {
             currentAppState = state;
             lv_Devices.ItemsSource = currentAppState.Devices;
 
             if (string.IsNullOrEmpty(currentAppState.GatewayIPAddress))
             {
-                ShowSettingsDialog();
+                await ShowSettingsDialog();
             }
         }
 
-        private void ShowSettingsDialog()
+        private async Task ShowSettingsDialog()
         {
-            btn_settings_Click(this, null);
+            using (SettingsDialog settingsDialog = new SettingsDialog(currentAppState.GatewayIPAddress, currentAppState.GatewayPort))
+            {
+                ContentDialogResult dialogResult = await settingsDialog.ShowAsync();
+
+                if (dialogResult == ContentDialogResult.Primary)
+                {
+                    currentAppState.GatewayIPAddress = settingsDialog.GatewayIPAddress.Value;
+                    currentAppState.GatewayPort = int.Parse(settingsDialog.GatewayPort.Value);
+                    await Startup.StoreAppState(currentAppState);
+                }
+            }
         }
 
         private async void btn_settings_Click(object sender, RoutedEventArgs e)
         {
-            SettingsDialog settingsDialog = new SettingsDialog(currentAppState.GatewayIPAddress, currentAppState.GatewayPort);
-            ContentDialogResult dialogResult = await settingsDialog.ShowAsync();
-
-            if (dialogResult == ContentDialogResult.Primary)
-            {
-                currentAppState.GatewayIPAddress = settingsDialog.GatewayIPAddress.Value;
-                currentAppState.GatewayPort = int.Parse(settingsDialog.GatewayPort.Value);
-                await Startup.StoreAppState(currentAppState);
-            }
+           await ShowSettingsDialog();
         }
 
         private async void AppBarButton_Click(object sender, RoutedEventArgs e)
