@@ -11,11 +11,11 @@
     PrimaryButtonText="Übernehmen"
     SecondaryButtonText="Abbrechen"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
-    SecondaryButtonClick="ContentDialog_SecondaryButtonClick" Height="640">
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick" MaxHeight="300">
 
-    <Grid Height="185">
-        <Button x:Name="Autodetect" x:Uid="btnAutodetectGateway"  HorizontalAlignment="Left" Width="250" Margin="10,21,0,132" RenderTransformOrigin="0.5,0.499" Height="32" Click="Autodetect_Click" >Auto Detect</Button>
-        <TextBox x:Name="tbx_gatewayAddress" x:Uid="tbxGatewayAddress" HorizontalAlignment="Left" Margin="10,52,0,0" TextWrapping="Wrap" Text="{x:Bind Path=GatewayIPAddress.Value, Mode=TwoWay}" PlaceholderText="z.B. 192.168.x...." VerticalAlignment="Top" Header="Gateway IP" Width="250" />
-        <TextBox x:Name="tbx_gatewayPort" x:Uid="tbxGatewayPort" HorizontalAlignment="Left" Margin="10,117,0,0" TextWrapping="Wrap" PlaceholderText="z.B. 49880" Text="{x:Bind Path=GatewayPort.Value, Mode=TwoWay}" VerticalAlignment="Top" Header="Gateway Port" Width="250"/>
-    </Grid>
+    <StackPanel Height="164">
+        <Button x:Name="Autodetect" x:Uid="btnAutodetectGateway"  HorizontalAlignment="Left" Width="250" RenderTransformOrigin="0.5,0.499" Height="32" Click="Autodetect_Click" Content="Auto Detect" />
+        <TextBox x:Name="tbx_gatewayAddress" x:Uid="tbxGatewayAddress" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{x:Bind Mode=TwoWay, Path=GatewayIPAddress.Value}" PlaceholderText="z.B. 192.168.x...." VerticalAlignment="Top" Header="Gateway IP" Width="250" />
+        <TextBox x:Name="tbx_gatewayPort" x:Uid="tbxGatewayPort" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="z.B. 49880" Text="{x:Bind Mode=TwoWay, Path=GatewayPort.Value}" VerticalAlignment="Top" Header="Gateway Port" Width="250"/>
+    </StackPanel>
 </ContentDialog>
