@@ -1,34 +1,17 @@
 ﻿using Reactive.Bindings;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Content Dialog item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace CortanaHomeAutomation.MainApp
 {
     using System.Diagnostics;
-    using System.Net;
-    using System.Net.NetworkInformation;
-    using System.Text;
     using System.Threading.Tasks;
     using Windows.Networking;
-    using Windows.Networking.Connectivity;
     using Windows.Networking.Sockets;
     using Windows.Storage.Streams;
 
-    public sealed partial class SettingsDialog : ContentDialog
+    public sealed partial class SettingsDialog
     {
         public ReactiveProperty<string> GatewayIPAddress = new ReactiveProperty<string>();
         public ReactiveProperty<string> GatewayPort = new ReactiveProperty<string>();
